@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-dotenv
+motor
+openai==0.28
+sqlalchemy
+passlib
+alembic
+python-multipart
+PyJWT
+bcrypt
+ffmpeg-python
+httpx
