@@ -54,3 +54,5 @@ path/
 
 # Ignore venv
 venv/
+
+backend/vendor

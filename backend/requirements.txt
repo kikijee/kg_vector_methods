@@ -2,7 +2,7 @@ fastapi
 uvicorn
 python-dotenv
 motor
-openai==0.28
+openai
 sqlalchemy
 passlib
 alembic
