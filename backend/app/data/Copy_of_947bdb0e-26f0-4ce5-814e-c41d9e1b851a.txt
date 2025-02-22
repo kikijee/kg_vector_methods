@@ -1,0 +1,286 @@
+Speaker A:
+Okay, so we're now recording.
+Speaker B:
+Yeah. So in my opinion, I think I used to work with a. With a company where the owner of the company had a website and she had an iPhone. And I. And I had to be biased here, but I had iPhones. So I use Chrome's dev tools to test my CSS in the responsive mode. And everything would look okay to me at my end, but then she would send screenshots saying, this is not done and this task is not complete, and this and that. I had no idea what's going on because I would create new profiles for devices and none of them was seeming to be fixing the issue. So I think testing the CSS on the cross browsers and cross devices is the best frustration for me. I think. Not the best. I think the worst frustration.
+Speaker A:
+Gotcha. I would love to learn a little bit more about that in context to your overall project workflow. So I have an activity that I'd like to do with you, if you're okay with that.
+Speaker B:
+Okay. I don't have. I think I have a bin here, actually.
+Speaker A:
+It's a. Oops. It's a web tool that I'm going to copy a link into the chat and if you can click on that, we can go through mapping out what your process looks like.
+Speaker B:
+Okay. Do you want me to present my screen or.
+Speaker A:
+No, you don't have to. Okay, I will. I will share my screen so that John can follow along with what we're doing.
+Speaker B:
+Okay, I'm on the.
+Speaker A:
+Okay, so in just a second, you're going to see a horizontal line representing time. So the left side is the beginning, the right side is the end. And I would love it if you could map out what your developer process looks like. And I realize that might be dependent by project, so I'll leave it pretty open to have you just talk to us about what. How you typically develop. And you have the ability to add events. And when you do that, they're going to populate in the middle of the screen, but you can drag them left or right and then don't worry about the vertical axis right now.
+Speaker B:
+So it's something like a Gantt chart that I'm drawing for the project.
+Speaker A:
+Yeah, I guess you could think about it as a Gantt chart. It's really just. You'll see as you populate the timeline with major milestones. It is somewhere.
+Speaker B:
+I might want to interrupt here because the way I use, like, the way I want to work with projects is like in a systematic way, like what I learned in my degree. But Most of the clients I get, they don't have requirements and they kind of follow like the Agile model, but they don't really follow the rules of the Agile model. So I'll list the events in which I work with this specific project, which was really frustrating. Like the events names and the complete flow of the tasks are the project that I used to work with that specific company. Is this clear?
+Speaker A:
+It is. And I guess what I would love to see from you then is maybe what your ideal workflow would look like.
+Speaker B:
+Yeah. Okay. I guess I'll have to add the names myself.
+Speaker A:
+Sorry, say that one more time.
+Speaker B:
+I don't see like a predefined list of events here, so I guess I'll have to add the names myself. Like whatever I call them, like requirement and. Yeah, okay.
+Speaker A:
+Yep, exactly.
+Speaker B:
+Okay. I'm sorry if I'm taking longer.
+Speaker A:
+No, no, take all the time that you need.
+Speaker B:
+Thanks.
+Speaker A:
+Is that the dog I hear in the background?
+Speaker B:
+Yeah, probably Australia dog somewhere, I think.
+Speaker A:
+Nice.
+Speaker B:
+I only see vertical lines here. I don't know how to link between stuff horizontally.
+Speaker A:
+Yeah, there's not the ability to link events, but if you just put them more or less in chronicles on the timeline. Yeah.
+Speaker B:
+Okay. I had her to keep it short. Okay. Do. Do I have to present my screen or does John see it?
+Speaker A:
+No, I think John can see it.
+Speaker B:
+Yeah.
+Speaker A:
+Okay, so this is what a typical or ideal process, I should say, looks like for you.
+Speaker B:
+Yeah, for me, at least.
+Speaker A:
+Okay. I'd love to dig in a little bit more into this implementation and testing event and have you just talk to me about what types of testing you do within that event.
+Speaker B:
+Okay. So I don't. When I say testing here, I don't really mean that I use some kind of testing tool or some testing framework for testing my code or for my design. The testing I usually follow with my clients is the manual testing because they sometimes have a lot of requirement changes, like stuff keep changing and changing and changing this way. I have to mainly sometime even on screen share, they have to pinpoint things to me. This is what we want and that's what we want. And that's because most of the clients are not technical, so they don't understand the tech words and they can only explain when they look at your screen or I don't know what's wrong with them. Implementation and testing, I put in the same step here because for me, I don't test after I completely implement something. I test along when I'm implementing to make sure that I'm going in the Right direction. That's why I put both of them in the same place before implementations. I have system design there and that's really important for me because I want to map out the whole thing before I start. This way it's easier for me in actually an extra step to verify the requirements so that once one step I have is the requirement finalization. There's the, you can say a document wheel of the requirement and then when, when I verify system design from the client, that means that I not only design the theoretical thing, the theoretical explanation of the system, but also the complete visual design and kind of like some, something like a mockup or a prototype. So that makes things easier to implement because there are less chances of changes after that.
+Speaker A:
+Makes sense. Are you typically the only developer on a project?
+Speaker B:
+Yeah, typically, yeah. I've worked with teams, but most of the projects I've worked with are like I was the lead developer. I had people working on like on some parts of the project because I'm not a front end person. I did start as a front end person but now my main focus is bacon. I develop in Node js, but yeah, I do keep a front end developer with me if I have a large project.
+Speaker A:
+Gotcha. So one of the things I'm going to do here is add some guides to this timeline where everything is placed right now. I don't know if you can see it because requirement collection might be overshadowing it, but the middle line becomes neutral. And anything above that is what might cause you frustration when you're developing for the web. And then below that is things that don't cause any frustration. So if you could drag and drop your milestones or events in terms of where you experience frustration, I think it.
+Speaker B:
+Would be the implementation and testing phase. Because this reality stuff happens. They see, they see the real thing and that's where most of the frustration happens because they keep asking for changes and changes even though that they would have verified the system design and the requirement finalization. But the thing is that most of the clients I work with never went this route like requirement collection, requirement finalization and system design. They just come to me and say, hey, we want this and to start on this. And I'm like, let's first make this thing clear. And they think there and they're like, no, no, we'll move along, just start the project. So yeah, actually I have these. I didn't see the neutral before, so let me. Yeah, it would be okay.
+Speaker A:
+And you can go below neutral too. If there's things that don't cause you any frustration?
+Speaker B:
+Well, there's frustration always, but I think this one, okay, this is a peaceful phase because they start to see things visually and they just leave it to me. Okay, you are going in the right direction and this and that. So they don't interrupt it here.
+Speaker A:
+Makes sense. So you mentioned with implementation and testing that you're really only using manual testing right now.
+Speaker B:
+Yeah.
+Speaker A:
+Okay. There's a. Can you actually talk to me a little bit more about or give me an example of what manual test for you might look like.
+Speaker B:
+Okay, I'll have to go on screen share. Well, I did use a tool in college. I think it was Smart Bear or something for testing web pages or. I don't remember exactly, but. Okay. So with manual testing, I mean like if I have to actually. Do you guys see my screen or not?
+Speaker A:
+No, I think I. Oh yeah.
+Speaker B:
+Okay. Okay. So I don't think this is the only way to test the front end stuff. I don't know if there are tools or testing to see whether this part of the page exactly looks like what I wanted. For example, if we see the background image is kind of zoomed in because there's a lot of padding above and below this thing and there's a lot of text here. So I would. With most of the clients I would sit like, like this on screen share and then they let me, okay, move it there and move it around or things like that. So I would inspect the element and change it like this and then leave it as is where they agree like, okay, this is what we want. So this is when I'm in manual testing. This is what I was meaning with the bacon stuff. I usually use some frameworks like mocha for JavaScript or Chia. A few small car. Not Chia, but I use the framework for testing APIs or my back end code. Gotcha. I do mostly like this. Is there any tool for testing the websites like to check for the exact padding like it is in the design or something like that.
+Speaker A:
+I'm sorry, was that a question for us?
+Speaker B:
+Yeah, yeah. I'm sorry.
+Speaker A:
+No, that's okay. I should warn you that nor John or I are web developers. So we would be the worst to ask.
+Speaker B:
+You both are firm.
+Speaker A:
+What was that?
+Speaker B:
+I thought.
+Speaker A:
+No, we both work for Pinpoint and we're. Mozilla is a vendor of ours.
+Speaker B:
+Okay. Okay. Okay. So I'm sorry, I'm a little boring. I'm hungry.
+Speaker A:
+No worries. You're not boring at all. And you can, you can stop sharing your screen if you don't want to keep it, keep showing it. But that was helpful to see. Thank you. So I want to dig in on a couple different types of testing that. Well, actually before we do that with the testing that you've mentioned, I would be curious to know what tests you don't run.
+Speaker B:
+Well, as I said that I was mostly the lead developer on most of my projects. It was my responsibility to test every bit of it to make sure that the product is delivered correctly and not with faults. So I think I do and I think I have. I don't know how to put this, but I do make sure that I test thoroughly to make sure that the thing I deliver is perfect. Because I have this feeling that if a client comes to me and if I deliver something that has like even bits of faults, then it's a bad impression of myself. So this, which is important to me. So that's why I make sure that I test every bit of the project, the project or the product before I deliver it.
+Speaker A:
+Gotcha. So there's a couple types of testing that we haven't talked about and I'm just to say them out loud and I'd love to get your reactions and you can tell me if it doesn't mean anything to you. You don't have to have a comment for any of them, but I'd love to know if you have any experience or thoughts on end to end testing.
+Speaker B:
+Are these, are these technical terms for testing? Because if these are technical terms then I might have experienced through this kind of testing. But since I don't know what the technical term for this specific testing is, then I don't know if I would answer you correctly. So yeah, I'll figure it out. I have Google open here, so.
+Speaker A:
+Actually there is no wrong answer because we're trying to learn from your perspective. So if it doesn't mean anything to you or it's terms that you're not familiar with that is insightful in and of itself.
+Speaker B:
+Okay, okay.
+Speaker A:
+So I'm going to keep going with a couple others. What about performance testing?
+Speaker B:
+No, actually I know what performance, but I never performed it. And since you got, since you guys work for like since Mozilla is your client, so I assume that when you say performance testing, you mostly would mean the page load speed or the website speed of the front end part of the website. Maybe like how faster it loads.
+Speaker A:
+Yeah, that's how we've been, that's how we've been thinking about it. But if you think about it differently, I'd love to know how you think about it?
+Speaker B:
+No, since I'm a bacon person too. So you need to check the bacon could how fast a server is responding to a query from the consumer or the customer. So that's another thing for browser performance testing. Yes, I do perform performance testing and I test the speed of the website using tools like Google PageSpeed Insights or GTMetrics. I mostly use GT metrics but I also take help from PageSpeed Insights. So yeah, I've been performing performance testing for front end websites.
+Speaker A:
+How do you deal with multiple browsers when you're doing performance testing?
+Speaker B:
+I don't deal with. That's where the frustration comes.
+Speaker A:
+Can you tell me a little bit more about that?
+Speaker B:
+Because I have a Windows PC and most of my clients are from the States or Canada or Australia and they all have Macs and most often, most often they use Chrome. But I don't know if the version of Chrome on osx they have different leading the version on Windows but they mostly have problems, mostly because of the screen. They have a Retina screen and with high dpi. So I think it might be causing the issue.
+Speaker A:
+Interesting.
+Speaker B:
+And with cross browsers, I think most of the clients I work with use Chrome. So I've never had the chance to test things on different browsers. Although I have all of the browsers installed with me except Opera. I have Edge and Mozilla to install, but most of my clients use Chrome so they're okay with Chrome. They don't care if the website looks different on another browser because they don't use it.
+Speaker A:
+Gotcha. And how does as a developer, how does that make you feel?
+Speaker B:
+Personally I like to make sure the thing looks okay on all the browser, but I don't think I ever did that for any of my customers to be honest, because it's just a headache to go through all the browsers and then with different screen sizes and different DPIs and all that stuff, it just makes the project more complicated because you spend most of your time during testing than implementation.
+Speaker A:
+Are there any tools that you currently use to help you understand how the application or webpage might work when it comes to cross browser testing?
+Speaker B:
+No, no, I don't use any specific tools. I just use the built in Chrome developer tools or if I'm on Firefox, I use their developer tools and the developer tools are pretty handy. They actually solve most of your problems. So I don't think you need for testing on different devices. I sometimes use some online tools that test your website or your mobile application on different devices that they have I don't know what they call it. Server farms or. I don't know. So yeah, I sometimes use them, but not too often.
+Speaker A:
+And you don't remember what they're called?
+Speaker B:
+I think one tool was called responsinator. Let me quickly search here. Yeah, response generator. But I rarely use this tool now because the result, even this tool shows you are incorrect most of the time because you see something different here and then the client tells you no, it doesn't look like this. Yeah, I'll send you the link there. Cool.
+Speaker A:
+Thank you. You mentioned that you might spend too much time testing or like one of the pain points with cross browsers is the amount of time that it takes to test. How much time do you spend testing right now?
+Speaker B:
+If I'm. If I'm working on part of a project and if the development part takes like it would be 1 ratio 3. If I spend 1% of my total time on implementation and I'll spend like 2 persons or maybe 2.5 to 3 persons testing it. But this mostly happens because the requirements are not clear in the first place. Like the chart, the timeline of the phases of development process I showed you. Most document clients don't follow that. So that's why we have these problems during testing and implementation. And most of the time I spend testing because I have to make sure that I make this thing perfect so that it's like this is the final revision of this task. So that's why I spend most of my time testing.
+Speaker A:
+And how do you feel about spending that time testing?
+Speaker B:
+Well, I want to finish the project faster, so. And testing and testing frustrates me because most of the time it's their fault, not mine, because they didn't make the requirements clear. They tell you something and then after they change their mind or maybe they don't like it the way it they wanted it before, so they want to change. And that's how you spend most of your time, playing with things to make sure that they like it. And this actually this has happened to me. Like they'll tell you one thing, like we like it this way. And when they see it in action or in the design or in live, so they don't like it and they just change their mind. Okay, just let's do it some other way.
+Speaker A:
+How do you try and overcome some of that frustration?
+Speaker B:
+I don't know. I guess I have to do it. So I do it.
+Speaker A:
+Gotcha.
+Speaker B:
+Some clients are stubborn. They just want you to do whatever they want.
+Speaker A:
+Makes sense. You're at the mercy of clients Sometimes, yeah. There's a couple other types of testing I want to run by you and see if you have any thoughts or comments about them. Visual testing, does that ring a bell to you?
+Speaker B:
+No. Visual testing? No. If you plan like a little bit like what visual testing means. Let me quickly search.
+Speaker A:
+Does screenshot testing mean anything to you?
+Speaker B:
+Yeah, that's what I do most of the time.
+Speaker A:
+Okay.
+Speaker B:
+Yeah.
+Speaker A:
+What? So that's what you do most of the time. What is maintenance like on those tests?
+Speaker B:
+What is what?
+Speaker A:
+I'm sorry, Maintenance like on those tests?
+Speaker B:
+Maintenance, yeah.
+Speaker A:
+Like. Oh, go ahead.
+Speaker B:
+I don't think I understand the question. I don't know what you mean by maintenance.
+Speaker A:
+We can move on from that question. Is there anything that screenshot testing is not addressing for you?
+Speaker B:
+No, I think most of the time I communicate with my clients using screenshots. Yeah. And when in severe cases it goes to screen sharing on Google made or some other tool, but most of the time it's screenshots.
+Speaker A:
+Gotcha.
+Speaker B:
+Yeah. I was clearing my WhatsApp the other day and the only thing I found were screenshots of websites, of clients.
+Speaker A:
+Is WhatsApp how you primarily communicate with clients?
+Speaker B:
+Yeah, WhatsApp most of the time. Yeah. I use Slack too, but most of my clients are on WhatsApp. Cool.
+Speaker A:
+So a couple more types of testing I want to see if you have any thoughts about. What about accessibility testing?
+Speaker B:
+Accessibility testing I don't do. But then some client comes to me and they say that their website is not compliant with this and that. So I don't. I think I use a tool by Google. I don't remember the name, but I think they have a tool for accessibility testing. If I'm correct, I'm not sure. But I did use some tool to test for the accessibility features of the front end website, but I did it only once.
+Speaker A:
+And what was that experience like?
+Speaker B:
+I don't really know much about accessibility testing, so I didn't do much for that specific project. And I don't think, I don't think I can give much information because I haven't worked with it much.
+Speaker A:
+Okay, no worries. Two more types. Component testing.
+Speaker B:
+No, component testing is the testing like you want to check compatibility or the link between two components. Right.
+Speaker A:
+Is that how you would define it?
+Speaker B:
+I think so. This is how I define it. But for. Yeah, if that's what it means, then yes I do. Because most of the time I work on bacon and in bacon we do perform these kind of tests, but in the front end I don't know what component Testing would mean? So I don't think I can answer.
+Speaker A:
+And how do you do that on the back end right now? Like, what is that?
+Speaker B:
+Like using it, as I said earlier. Yeah, as I said earlier for the bacon testing, I mostly use frameworks like Mocha. Mocha is a testing library for Node js. So that's what I use most of the time. I use others too, but. Yeah, most.
+Speaker A:
+And are you pretty happy with Mocha?
+Speaker B:
+Somewhat, but I haven't tested others, so I don't know if there's any better out there.
+Speaker A:
+Are there any places you go to keep up to date with available tools or testing exchanges?
+Speaker B:
+Yeah, but I mean I was, I used to, I used to have a lot of tech channel subscribe in YouTube and this how and Medium and Reddit. But now I have this cool plugin installed and when I open a new tab, it's actually a developer with Daily.dev it's called Daily.dev so they have all the latest tech news here. If you want I can show you.
+Speaker A:
+It's ok. I just opened it up on its own tab.
+Speaker B:
+Yeah, so they have a cool extension and yeah, they show all these styles of new tech news there. There's actually a play if you create an account there. You can even subscribe to different channels or tags or stuff you want if all the kind of news. So this nowadays, like for the past two or three months, this is how I keep myself updated with tech news. Cool.
+Speaker A:
+Yeah, I haven't heard of that one before. Thanks for sharing.
+Speaker B:
+Yeah.
+Speaker A:
+And then the last testing type I'd love to know if you have any thoughts about is unit testing.
+Speaker B:
+Unit testing, as we define, as we learned in college, was setting one component or one unit. So if that's what it means, then yes, I do it. And this would be again, using Mocha or some other library.
+Speaker A:
+Okay. And do you have any observed differences that you'd want to share about testing on mobile devices versus desktop devices?
+Speaker B:
+Well, when I test for mobiles, I use my desktop. I use my desktops Chrome dev tools most of the time and they have this responsive tab there where it emulates a web page in an iPhone or an Android phone. So that's how I test it. But most of the time the page, the design you see, the front end design you see in the Chrome dev tools will be different from the one on the actual device. And there's no way I can test why it's happening on the. On the device, on the actual device. But I think most of the time it's the screen's pixel density or the DPI is causing the issue.
+Speaker A:
+Okay, John, do you have any questions?
+Speaker C:
+So I think the only note that I have that I'm kind of curious about, if you want to elaborate further on abhi is you've talked about a couple of tests that you run. Do you have any other tools that you use for test or. Sorry, you talked about some tools that you've used. Do you have any other tools in your suite that maybe you use and you don't really think about or that you have to use for very random occasions?
+Speaker B:
+I don't think I get the answer completely. But if you mean that I might be having some tools that might be helpful to me during testing but I'm not using them. Is that what you mean?
+Speaker C:
+It could be that you don't use them often or that you use them all the time and just don't think about it. I'm just curious your scope of different tools you use.
+Speaker B:
+Yeah, so for my web development I mostly use VS code and for debugging the bacon code I use the terminal of the built in terminal of the VS code is how I debug my code, my bacon code and then fix it. That's something. Then VS code might have some extension for maybe front end testing and maybe backend testing. But these days I'm pretty busy so I don't have time to look for those tools and then learn them how to use them. I'm pretty sure VS code might have some extensions for testing maybe.
+Speaker C:
+I think that was, that was my question, Alison.
+Speaker A:
+Okay, Avi, with the time that we have left, I want to flip it back to you and see if there's anything that we haven't talked about that you want to talk about or any other comments, questions. It's basically your open platform to, to make sure that we cover everything you want to cover.
+Speaker B:
+Yeah. So I mean the only frustration I have is testing the front end part of the website for mobile. So I don't think browsers do have like a perfect way to make sure that what we develop here on my desktop would make exactly look the same on an actual device. It could be because I don't know how to completely use these testing tools. Maybe I need to create a specific profile for every different phone. I don't know, I'm not sure. But I think this is the thing that I think is missing from all the browsers. Like testing for mobile versions of a website. Yeah.
+Speaker A:
+Is there anything like how would you go about learning if you're using the tools appropriately or how do you have plans to become more familiar with those tools?
+Speaker B:
+I don't know. I don't know how to answer this, but I think I'll dig deeper into the tools to see if I'm missing something. But, yeah, and I think I'll learn something because as I spend more and more time in the. In the developer tools of either Mozilla or Google Chrome, I find I often find new things and new ways to fix my problems or to make the testing easier. So, yeah, I might be missing something, but as I said that maybe I need to play with the profile, the device profiles that these developer tools have. But yeah, I haven't really tried that. So, yeah, maybe it's the answer.
+Speaker A:
+Perfect. What do you think has stopped you from trying?
+Speaker B:
+I don't know. I don't know. Maybe I'll try this tonight. I don't know. I think this just popped up into my mind to look for a place where we have predefined profiles for these devices. Maybe there's a place, maybe not. But yeah, this is an option to try. It could not be the solution, but this is an option to try. Cool.
+Speaker A:
+Well, unless you have anything else you want to share, that wraps up the questions I have. So we can give you some time back in your evening and you can go get some food.
+Speaker B:
+Yeah, so, yeah, no, I think I'm good.
+Speaker A:
+Okay. Well, thank you so much for. Oh, sorry, go ahead.
+Speaker B:
+Yeah, I said I'm cooking dinner, so.
+Speaker A:
+Awesome. Well, I will let you get back to that. And again, thank you so much for your time. It was really helpful to hear your pers perspective.
+Speaker B:
+Yeah. Thank you so much for hosting me. Thanks.
+Speaker A:
+Thank you.
+Speaker C:
+Enjoy dinner.
+Speaker B:
+Thanks. Bye.

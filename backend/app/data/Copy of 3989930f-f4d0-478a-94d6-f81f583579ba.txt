@@ -1,0 +1,198 @@
+Speaker A:
+This call is being recorded. Okay, so we left off at Puppeteer supporting Chrome.
+Speaker B:
+Oh yeah. So it has experimental support for Firefox, but it's not official and it doesn't support testing for Safari or Internet Explorer, so that's kind of an issue. So the Internet Explorer, I'll just open a VM and test everything by hand. And for Safari I'll just borrow one of my friends Max and test it on that. So in the end it's easier just to test everything by hand rather than using Puppeteer.
+Speaker A:
+And what does that process look like when you're testing it by hand?
+Speaker B:
+Well, I'll start on the main page and then I'll go through each page and test all the functionality on that. If it's some site with different users in different roles, I'll start with like a standard user role, test of the functionality, then open an administrator account, test all of that. It's kind of a mess. I just go through in what seems like a logical order, but there isn't any real special order. I just. Yeah, it's not very organized.
+Speaker A:
+And does that work for you?
+Speaker B:
+It works well enough. It catches visual regression bugs fairly easily. Like if there's something that works on a Firefox but not on Chrome, it's pretty obvious because Chrome, it looks ugly and sticks out immediately. So it works well enough. For more subtle issues it can be a problem. Like I was working on a rendering engine in the browser and for some reason it was rendering in color on Firefox, but it would only work in black and white on Chrome and that took quite a while to work out.
+Speaker A:
+Interesting. Wasn't sure. I'm sorry, go ahead.
+Speaker B:
+It would be nice to have some kind of automated system that opens up a virtual machine for like Windows macOS and then like a standard Linux one, and tests like in every single browser and gives a screenshot of all of the pages. That would be nice, but at the moment it's easier to just do it by hand.
+Speaker A:
+Gotcha. Aside from Puppeteer, are there other tools that you have tried to use?
+Speaker B:
+Yeah, I tried using just for just unit tests and it was okay, but it doesn't make too much of a difference. I can just write a function by hand which outputs in the log if there was an issue. So I've used Jeff, it's okay, but it doesn't make too much of a difference. And I tried one other end to end testing tool. I can't remember its name off the top of my head. I'll look it up quickly.
+Speaker A:
+Was it selenium by chance.
+Speaker B:
+Yes, it was.
+Speaker A:
+That one's come up a couple times.
+Speaker B:
+Yeah.
+Speaker A:
+And what? What? Why didn't you end up sticking with the Selenium?
+Speaker B:
+Again, it was some of the same issues as Puppeteer. I think it supported Firefox. I don't think it supported US Safari, though, which was annoying. I think this was a couple years ago. And again, it was kind of more effort than it's worth. I could just do the exact same thing by hand rather than wasting time trying to automate the testing for things like unit tests. It's worth it. But Selenium, I just didn't think it was worth the time when I could do it by hand.
+Speaker A:
+Gotcha.
+Speaker B:
+I think if I was kind of like a big organization, it would be worth it, but when you're just doing kind of small projects, it doesn't matter too much.
+Speaker A:
+That makes sense. And then I wasn't sure if you were done mapping out the major events in your workflow.
+Speaker B:
+I'm pretty much done. I'm not too organized in the workplace, so I may be forgetting one or two things, but that looks like a pretty general workflow.
+Speaker A:
+Okay. One of the things I want to do is add some guides. So this is where the vertical axis comes into play. Anything. So basically where everything you mapped out is relatively neutral. Perfect.
+Speaker B:
+So I guess it would look something like that.
+Speaker A:
+Okay.
+Speaker B:
+Actually, I didn't realize I could scroll down anymore.
+Speaker A:
+Yes. Yeah, you can keep going all the way to the bottom if you want.
+Speaker B:
+Yeah, that seems about right.
+Speaker A:
+Great. I'm curious. So you have. Unit testing is not very frustrating. Why do you think that it. It's not frustrating for you?
+Speaker B:
+Well, for the backend. Unit testing, normally for the backend, I'll write everything in Rust. And unit testing in Rust is pretty easy and straightforward. It's like it takes almost no time. With JavaScript on the upper hand, it's still not that hard to do, but not as straightforward as Rust. With Rust, you just write like a normal function and then you can annotate it with the word test at the top of the function. And then you can run a command and it will run all of your unit tests and tell you exactly what failed and give you information that. With JavaScript, I try to achieve the same thing by outputting it in the console log and it looks pretty. Well, it's not as nice as with Rough, though.
+Speaker A:
+Gotcha. And then it looks like requirements from client and test functionality by hand are two of the more frustrating aspects of your workflow.
+Speaker B:
+Yeah, because often the Clients don't know exactly what they want, so that can be annoying. And testing functionality by hand, it's not difficult, it's moderately time consuming and it's not fun work where like writing the backend and stuff is fun, but testing the functionality, you just kind of click through pages and make sure everything does what you expect. So it's not as fun, it's not like super frustrating, but it's probably the most annoying bit.
+Speaker A:
+Gotcha. I'm curious about. And so we've. You've talked a little bit about unit testing and testing functionality by hand. Are there any specific types of tests that you don't do?
+Speaker B:
+Well, I, I test like my stuff by hand, the visual regression testing, I really only like do that by hand. I don't use any automated tools for that. I can't really think of stuff I don't do. Maybe if a function is so simple that it just seems like it should work, I won't bother testing it. Yeah.
+Speaker A:
+What would be an example of something that you wouldn't bother testing?
+Speaker B:
+Let me think. I'll try to find an example from a project I've been working on. Oh yes. So I've got a simple function which just takes some data that the user entered, sends it through a websocket to the back end, and then that's entered into a database. I don't bother testing that because it really just should work and it's a straightforward, simple function. And in general, I don't bother testing functions which talk to the backends because they tend to just be sending simple data and. Yeah, but more complicated functions and especially like statistical functions. Like in a recent project, I needed to compute the standard deviation and a few things like that of a sequence of numbers. I tested all of them fairly thoroughly because they're easy to get wrong. And you also have a bunch of numerical errors to do with the floating point system. So you need to make sure all of those are correct.
+Speaker A:
+Gotcha. You mentioned visual regression. I'm wondering if you could just elaborate a little bit more on what that means.
+Speaker B:
+So if I'm working on like the CSS website and I make like a typo, I'm changing something and I write color with a user English spelling rather than the American spelling. The color in the website will be messed up and go back to like the defaults. That would be a visual regression and it will look weird. I will generally only notice that if it sticks out. Really obviously if I have like set the text color to a dark gray rather than the default Black. Hello.
+Speaker A:
+Mm.
+Speaker B:
+Ah, cool. I just heard like some beeps and I thought you might have disconnected or something.
+Speaker A:
+Nope, still here.
+Speaker B:
+Okay, cool. Yeah, if I make a typo in something, then it could mess up the colors or styling. If it's something subtle, like a dark gray turning into black, it can take a while to kind of notice that and fix it. But some more obvious things like changing the main color of a menu or something, that's easy to pick up on. Cool.
+Speaker A:
+That makes a lot of sense. Oh, I was going to ask you. We kind of jumped around a little bit with switching conferences, but I'm curious and I think I might know the answer, but I want to test my assumptions. How? If you had to describe your test suite, how big would you say that it is?
+Speaker B:
+My test suite?
+Speaker A:
+Yeah.
+Speaker B:
+Well, I just opened a project I'm working on at the moment and it's got about 15 unit tests at the moment and it's got maybe 2,000 lines of code in it at the moment. So about 15 unit tests per 2000 lines is about average for me.
+Speaker A:
+Okay. Roughly how.
+Speaker B:
+Not sure if that's big or small compared to normal people.
+Speaker A:
+You know, we have heard very different answers on this study we're talking to our goal is 20 people and you are the 10th and I. It doesn't seem out of the ordinary, but it seems to vary widely depending on people's work.
+Speaker B:
+Oh wow.
+Speaker A:
+And with that many test cases, how. Like what? How would you describe the amount of time and effort that you end up spending on testing?
+Speaker B:
+Depends on the language. If I'm working in Rust, it's very straightforward and it would take maybe five minutes per test. Really, it's quite quick. It depends on the complexity. The JavaScript, it's a bit more, but not by a whole lot. Again, the functions I do in JavaScript tend to be simpler. I try keep all the complexity in the backend. So. Yeah.
+Speaker A:
+And do you feel like that is usually like you're pretty satisfied with the amount of time that you spend testing?
+Speaker B:
+Sorry, what did you say?
+Speaker A:
+Are you usually pretty satisfied with the amount of time that you spend testing?
+Speaker B:
+Yeah, except for testing by hand. I wish I could cut down the time on that but of the existing solutions end up taking more time than what it would take to do by him. But in terms of unit testing, I'm pretty happy with the time I spent doing testing.
+Speaker A:
+Great. And are there. How would you describe the maintenance of test cases?
+Speaker B:
+It's not too bad, I guess for unit tests it's quite simple. Again, I don't really test the functions which just communicate to the backend. So that changes quite frequently. And if I did test that, that would break a lot. But the functions I test tend to be fairly stable. If I know I'm going to change something, CNI won't really test it too thoroughly, so testing the maintenance isn't really a big issue.
+Speaker A:
+And then when you're running the tests, is there any sort of tools and frameworks that they need to interact with?
+Speaker B:
+Not really, no. For Rust, I run all of the tests using Cargo, which is the package manager that rust uses for JavaScript. It doesn't really need anything to run, no frameworks or anything. When I use JavaScript, I try to avoid frameworks as much as possible because they're generally bloated and slow down my pages.
+Speaker A:
+Gotcha. That's a something we've heard in previous studies, so it's interesting to hear echoed here. And then how often would you say that the tests catch a problem in the application versus it being a problem with the test itself?
+Speaker B:
+Depends on the type of thing I'm testing. Like the tests I mentioned earlier, the function that computes the standard deviation. I did have problems in that test rather than the actual code, because when I computed the standard deviation online by some online calculator, it didn't do it to enough precision. So I had errors there. It was rounding off to one decimal place, which was an issue. So situations like that happen occasionally, but not too often. Maybe say a fifth of my tests might have an issue like that. It depends on the project as well.
+Speaker A:
+That makes sense. So I actually want to use the last 15 minutes to flip this back on you and see if there are any questions that we haven't covered that you would like to cover, or any deeper insights. You want to make sure we learn about testing and your experience running tests.
+Speaker B:
+One thing that I think would be good is kind of adding a unit testing into the JavaScript language. Kind of like in Rust, you can annotate a function with the word test and it will be run as a test when your code compiles to make sure it works properly. What would be cool is doing something like that in JavaScript where you can add kind of a comment above a function and then in a pane in the developer tools, it will run all of those functions as the unit test. Hello? Are you still there?
+Speaker A:
+Sorry, I was on mute. If you had something like that, what would be the benefit to you in your process?
+Speaker B:
+It would make everything slightly quicker and easier to see at length what I do at the moment is just print the results of all of the tests into the console log, which works. But if we do it the way that it's done in Rust, it would kind of simplify the whole process. I can see all of it in the developer tools and it would just be a nicer experience. It's nothing kind of desperate, but it would just make the whole thing easier and nicer to do.
+Speaker A:
+Gotcha.
+Speaker B:
+So I can Rust, when you compile your code it will just show you the output of all of the tests and whether they passed or failed. And you can't do something exactly like that in JavaScript since it's not a compiled language. But just showing it in the developer tools would be good. And then having like tools like jsminify could just automatically strip out all of those functions.
+Speaker A:
+There are a couple types of tests that. Well actually before I do any follow up questions, I did give you the last 15 minutes, so was there anything else that you wanted to cover?
+Speaker B:
+Sorry, not really.
+Speaker A:
+Okay, sorry about that. There's a couple that we haven't talked about and I just am going to say them out loud and curious what your reactions are and you could, you know, you could just tell me. There is no reaction as well. So what about accessibility testing?
+Speaker B:
+Yeah, I try to make sure my websites are accessible, but in the past I haven't put a whole lot of effort into it. I've used all of the standard tags and stuff to make sure everything should be picked up by screen readers correctly, but I haven't really taken the effort to use a screen reader myself to see if my sites are accessible. I probably should do that though.
+Speaker A:
+Is there any particular reason why you haven't spent the time on. It.
+Speaker B:
+Really hasn't been a thing that I thought about really. Like when you're writing a site you're. At least for me I don't really think about people using screen readers and stuff because I've never used one and I've never really seen anyone use one I like. I could try and remember but it's not something I actively think about. I do try to follow like the best practices and stuff there, but I. Yeah, what.
+Speaker A:
+Where do you go to learn about what the best practices are?
+Speaker B:
+MDN is the main place and you also read about them on like blogs and stuff online. But MDM would be the main resource. Great.
+Speaker A:
+And what about performance testing?
+Speaker B:
+Yeah, I try to make sure performance is quite good. I don't do like any automated testing, but I'll open up the network tab on the developer tools and make sure everything loads in like a reasonable amount of time. I don't have like any fixed amount for that, but if it feels like it's taking too long, I will try and cut down. But I also don't use like any kind of big heavy framework, so I try and do everything in vanilla js, so it's not an issue too often.
+Speaker A:
+And is that something that you usually test on a per browser basis?
+Speaker B:
+No, not really. I've only really tested it in Firefox because the main issue is downloading everything from the server. Like in the past I've had issues with fonts being too big and that's been slowing down sites. I've never had an issue with my code taking too long to run in the browser really. So I only test that on one browser because it's not worth testing in others. Generally the performance is pretty similar between browsers for the stuff I'm doing at least anyway. Actually one exception to that would be the rendering engine I wrote in the browser that ran pretty slow on mobile devices, but it was made as a proof of concept really, so I wasn't too concerned about that.
+Speaker A:
+Great. You mentioned Selenium in the past and I think we've talked about some of this. But what about end to end testing?
+Speaker B:
+I haven't really worried about it too much. When I tried using Puppeteer, I believe Puppeteer is classified as an end to end testing framework and it, it was okay, but again it was more effort than it's worth. I can do most of that by hand in less time.
+Speaker A:
+And then the last one is component testing.
+Speaker B:
+Can you define that?
+Speaker A:
+I can, but the expectation is that most participants don't do this kind of testing. But an example might be if you're testing a component like a credit card form at different sizes.
+Speaker B:
+Oh yeah, yeah. So most of the stuff I write by hand. So I. Most of the components I write. And I try to avoid components written by other people. So I don't test them really because I don't use them. Everything I. Almost everything I use I Write myself in JavaScript at least.
+Speaker A:
+Cool. Well, that covers my questions. Do you have any things that we haven't covered aside from what you shared earlier?
+Speaker B:
+No, not really. My main kind of question would be testing in Safari. Like my understanding is it would be quite difficult to do because Safari is only on Mac os. So if I wanted to test it from my laptop, that wouldn't really be possible. It would be good if you could kind of test it cross platform because at the moment. I'll just borrow a friend's laptop to test everything. It would be nice if there was a way to get Safari running on Linux just for testing purposes or even in a virtual machine or something, but that seems like a pretty big challenge.
+Speaker A:
+I can tell you that Apple is not one of the stakeholders behind this work.
+Speaker B:
+Yes, that doesn't come as a surprise.
+Speaker A:
+But maybe they'll catch wind of it somehow.
+Speaker B:
+That's fairly optimistic of you.
+Speaker A:
+Well, awesome. That wraps up everything I had. I apologize for the audio issues, but I'm glad that this platform ended up working better for us.
+Speaker B:
+Yeah, thanks.
+Speaker A:
+Yeah, thank you. Well, I really appreciate you taking the time and sharing your thoughts on web testing.
+Speaker B:
+Yeah, thanks. I'm thankful for. Kind of have a say in it.
+Speaker A:
+Yeah. Well, I'm quite blown away by the support that we've received from developers. I really, really appreciate the time and I'm glad that I can be a part of being able to offer a voice as well.
+Speaker B:
+Yeah. All right. Thank you.
+Speaker A:
+Thank you. Take care.
+Speaker B:
+You too.
+Speaker A:
+Thanks. Bye.
