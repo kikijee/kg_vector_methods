@@ -6,9 +6,9 @@ router = APIRouter()
 
     
 @router.post("/generate-graph")
-async def test(req: Request):
+def test(req: Request):
     try:
-        data = await kg_service.generate_graph()
+        data = kg_service.generate_graph()
         return{
             "data":data
         }

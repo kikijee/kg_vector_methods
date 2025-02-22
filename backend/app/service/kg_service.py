@@ -1,4 +1,4 @@
-import openai
+from openai import OpenAI
 import glob
 import json
 import os
@@ -14,9 +14,9 @@ import os
 [challange] {"text": string}
 """
 
-openai.api_key = settings.openai_api_key
+client = OpenAI(api_key= settings.openai_api_key)
 
-async def generate_graph ():
+def generate_graph ():
     start = timer()
     prompt_template = """
     From the Project Brief below, extract the following Entities & relationships described in the mentioned format 
@@ -26,7 +26,7 @@ async def generate_graph ():
     Entity Types:
     label:'Document',id:string,summary:string //Document is referencing the entire document; `summary` is a summary of the entire transcript; `id` is the file name included under Case Sheet before the transcript
     label:'Objective',id:string,name:string;summary:string //Objective that is mentioned in the text; `id` property is one word that summarizes the objective as a whole. This one word must only be in lowercase.
-    label:'Challenge',id:string,name:string //Challenges that are talked about; `id` property is one word that summarizes the challenges as a whole.
+    label:'Challenge',id:string,name:string; //Challenges that are talked about; `id` property is one word that summarizes the challenges as a whole.
     
     2. Next generate each relationships as triples of head, relationship and tail. To refer the head and tail entity, use their respective `id` property. Relationship property should be mentioned within brackets as comma-separated. They should follow these relationship types below. You will have to generate as many relationships as needed as defined below:
     Relationship types:
@@ -47,37 +47,30 @@ async def generate_graph ():
     results = []
 
 
-    file_path = r"../data/Copy_of_0307f11b-5ffb-4425-aae4-db935f2bcaa7.txt"
-    absolute_path = os.path.abspath(file_path)
-    #print(absolute_path)
-    if os.path.exists(absolute_path):
-        print("File found:", file_path)
-    else:
-        print("File not found")
-
-    print("Current Working Directory:", os.getcwd())
+    file = glob.glob(r"./app/data/Copy_of_3548f8f6-f15f-493b-8338-01d0945629e6.txt")
 
 
+    file_path = file[0]
     
-    # file_path = file[0]
-    
-    # file_name = os.path.basename(file_path)
-    # text = file.read().rstrip()
-    # prompt = Template(prompt_template).subsitute(ctext = text)
+    file_name = os.path.basename(file_path)
 
-    # try:
-    #     response = await openai.ChatCompletion.create(
-    #         model="gpt-3.5-turbo",  # or "gpt-3.5-turbo"
-    #         messages=[{"role": "system", "content": "You are an expert in graph representations."},
-    #                   {"role": "user", "content": f"{file_name}\n{prompt}"}],
-    #         max_tokens=15000,
-    #         temperature=0.2,
-    #     )
-    # except Exception as e:
-    #     return {"error": str(e)}
-    # end = timer()
-    # print(f"Completed in {end - start} seconds\n")
-    # results.append(json.loads(response)) #convert the response from gpt into a JSON 
+    with open(file_path, "r") as file:
+        text = file.read().rstrip()  # Read and remove any trailing spaces
+    
+    prompt = Template(prompt_template).substitute(ctext = text)
+
+    try:
+        response = client.beta.chat.completions.parse(
+            model="gpt-4o-mini",  # or "gpt-3.5-turbo"
+            messages=[{"role": "system", "content": "You are an expert in graph representations."},
+                      {"role": "user", "content": f"{file_name}\n{prompt}"}],
+            temperature=0.2,
+        )
+    except Exception as e:
+        return {"error": str(e)}
+    end = timer()
+    print(f"Completed in {end - start} seconds\n")
+    results.append(json.loads(response.choices[0].message.content)) #convert the response from gpt into a JSON 
     return results
 
 
