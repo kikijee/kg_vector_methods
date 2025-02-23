@@ -11,3 +11,8 @@ PyJWT
 bcrypt
 ffmpeg-python
 httpx
+neo4j
+langchain
+requests
+langchain-neo4j
+langchain-openai

@@ -1,0 +1,290 @@
+Speaker A:
+Run.
+Speaker B:
+All right, sounds like a fan. So we will do our best to stay on target and get this out of the park. Just to refresh now that we're recording. I'm John with Pinpoint, this is Allison, and we're conducting the research for the web MDNA study. Just mixing words now. We're looking specifically at testing across browsers, and we're curious for your input today, Albert, before we dive into an interaction or interactive exercise, I was curious, do you have anything off the top of your head you'd want to talk about in relation to browsers and testing and web development?
+Speaker A:
+No, nothing specific, really. Just waiting for your questions.
+Speaker B:
+All right, perfect. So what I'm going to do is we're going to start this off with an interactive exercise, and in the chat, I'm going to paste a link. If you could launch that link, you might have to copy paste. And just let me know when you have that up running.
+Speaker A:
+Yep, starting now. Give me a sec. Bring it up.
+Speaker B:
+Awesome. I'm going to be sharing my screen so that James and Allison can follow along. Let me go ahead and find. There we go. Perfect. What you're going to end up seeing here in a second is a nice little graph called testing workflow. And you're going to have the opportunity on your screen to add events. What I would like for you to do is walk us through how you typically go about your web development process on a given project. And recognizing that projects might look totally different case by case, give us one that you feel pretty good about talking about, and then just give us kind of your general start middle end points, any milestones you might. And as you're doing that, if you could talk us through what they are, it would be really helpful.
+Speaker A:
+I definitely will ask in between again what you wanted to know again. This is like any kind of event that happens during my workflow. Yes. Loaded down. Okay. Okay.
+Speaker B:
+Just quick heads up. When you go to add the event, it's going to populate in the center of the screen. You'll be able to click and drag it right, left, up, down. So don't feel like you're stuck in the center.
+Speaker A:
+Okay. And I'll just do a brainstorm design.
+Speaker B:
+Perfect.
+Speaker A:
+Might be the first one, but it's one add event set maybe. Okay. And who of you are developers?
+Speaker B:
+So you're going to be the subject matter expert in this case?
+Speaker A:
+I can't ask questions. Yeah, fair enough.
+Speaker B:
+What do we do again?
+Speaker A:
+What is the first thing we do again?
+Speaker B:
+So tell you what, Albert, let's just role Play this real quick. If you're given a project, what are some of the first things you do?
+Speaker A:
+Yep, perfect, thank you. First things I do is asking for a time frame, then asking for the design files. It's funny, you do it every day and then if you have to put it in words.
+Speaker B:
+Maybe think of a project you did just this past week and start.
+Speaker A:
+Yeah, I'm just thinking who is approaching me. It might be business. They want something done. They are asking for if that's actually possible at all and how much time it'll take. How would you call that in English? That's the other thing.
+Speaker C:
+A timeline, perhaps.
+Speaker A:
+Say that again, please.
+Speaker C:
+Timeline, perhaps.
+Speaker A:
+Timelines. Yeah, that's definitely something. Timelines. Yeah. Our approach is quite organic. I think that's why I have a little bit issues putting in words what comes after the design brief. I would really say usually they will come to me, tell me we need something new, I'll ask for the design so that I can give them actually a time frame or an idea how complicated it is, or if we need more from the designers and then we actually start knocking it out again already. And big projects, we have a lot of brainstorm about the technology we are using. Oh, sorry. I was in the complete, complete workflow, not just testing. That was. Yeah, fair enough.
+Speaker B:
+Right.
+Speaker A:
+Testing. We have it, we do it. See me and yeah, business rules, that they are still there and some accessibility. That correct testing, but that usually sadly false. Quick question again, where do I put this? What does that mean?
+Speaker B:
+So you're just going to kind of create a timeline for when these would happen? It could be a straight line, it can be an ups and down line. Yeah. Just.
+Speaker A:
+What would up and down indicate anything or. Doesn't matter.
+Speaker B:
+The spacing doesn't matter. You can put those wherever you like. I'm kind of curious. You've written down a lot of these testings. How do you feel about the testing that you do?
+Speaker A:
+Because I'm more UI developer, so I'm focusing on UI and UX a bit more. But I'm in the functional. But the for example, business rules, I would say that's more on the back end.
+Speaker B:
+So do you feel good with some of the tests?
+Speaker A:
+Sorry, yeah, go ahead.
+Speaker B:
+Nope, go for it.
+Speaker A:
+And accessibility testing would also be more in my realm, for sure. But sadly, that's usually the thing we do afterwards, if at all.
+Speaker B:
+Yeah, you say that it sadly. Can you kind of elaborate on that for me, please?
+Speaker A:
+I think accessibility testing is helping people with disabilities, but everyone else as well. So the better A page is written in form of accessibility. The easier it is to navigate with the keyboard for everyone highlighting stuff better. But it is quite a bit more design work and dev time and hence you're not doing it while you are on high pressure to get things out in the wild. And once they are out in the wild you're trying to minimize your changes so that you're not breaking stuff. Therefore that also comes usually a bit later. So you either as a developer you think of it straight away or think of think of parts that are easy to implement straight away while you're. While you're the initial work and you just implement them or they often get put aside except of I guess in government where it's required to have them.
+Speaker C:
+Awesome. Thanks for that. Albert. I'm looking at the beginning of this workflow that you mapped out here and I see UI testing, functional testing, UX testing. I'd love it if you could just help us understand what each of those testing means to you and perhaps elaborate on what toolset you might be using to help you with those tests.
+Speaker A:
+Yeah, so as I said because I'm more UI UX developer for me it's usually I have a design in front of me in back then Photoshop these days, what is it? Figma. And then we are building it and refreshing straight in the browser. So that's my. I built the DOM in the CSS and JavaScript and then render it in the browser and that's clearly just a visual test that the structure is right and the styling is all right and that's then usually also stuff isn't the right so you fire up the dev tools usually the inspector mainly for that I'd say Inspector. What's the other thing called? The picker maybe the element picker that are the two tools I guess in that moment that I'd use the most and once that's settled more or less that bit of UI then it's functional testing that the JavaScript functions properly UX and business rules that I think that all merges a little bit into each other. So as besides the business rules from data driven from the backend besides that such rules in the front and there then we start using the console the debugger network panel. Yeah I think style editor I'm not using too much just playing around with rarely in all my years. So I opened the devtools to having it a bit easier here in peril and then accessibility testing would be neither of them I haven't played around too much with the new accessibility panel in the dev tools in Firefox yet just a little bit here and there.
+Speaker C:
+So you've mentioned when UI testing that you'll check it in the browsers. I'm wondering what browsers that you use to or one that you have to support and that you test in.
+Speaker A:
+Yeah, pretty much my main tool is Firefox just I'm working with the rave for 20 or so or so pre Firefox times with Netscape and yeah just supporting it ever since. But then next one is if I I'm happy in Firefox double checking Chrome obviously because it just has such a big market share that it always needs to work and after that in Safari because it's the next biggest in market share especially primarily on mobile. That's about it because I'm on a Mac depending on the project. So for example for the main website of the company I work for I tested in i11 as well. So I fire up a virtual machine with i11 in it to if I have bigger changes. So I'm not doing that for every change because it's just time wise it's usually not worth it and because I know the browser flaws I think by now well enough to get around them. Give me a sec. I think there is a dog barking. I will make it a bit quieter for you. Yep. So yeah that's about the browser I test with. I'd say yeah Edge these days we don't have to really test I think I haven't tested Edge since definitely since they changed to Chromium. I might have tested rarely from time to time but usually it was working in Edge HTML anyway.
+Speaker C:
+And what's driving the decision to test in those browsers that you just listed?
+Speaker A:
+Firefox because it's my browser so that's I'm at home, I'm using nightly at work I'm using definition for me it's just it's a political decision in the end that the browsers to have some say they need some market share to have some market share they need users. So I always stay on the free browser that's there and then the other ones is Chrome as I said has the biggest market share so needs to be tested. Safari has the second biggest market share at least in Australia and I think us as well for mobile and big market share actually on desktop these days as well especially those countries I think England as well. Maybe Firefox doesn't have a big market share sadly there anymore in Germany still. And then the next one's Edge is creeping up A little bit. I think they're on 5, 6, 7%, but in the end it's the same underlying engine as Chrome, so there shouldn't be really any difference for the stuff we are doing. They might start at some point having minor JavaScript engine difference, if at all, I would suspect. So it's the same browser essentially, just with a different UI and functionality a little bit.
+Speaker C:
+Gotcha. One of the things that we want to do next, and I'm going to have John load these up, is you were asking about the vertical axis on this, on this graph that you've mapped out here for your timeline. So he's going to go ahead and add some guides. And what I'd love to know from you is where everything stemming from is neutral. And then above that is where you might experience frustration as a developer. And anything below that is where you don't experience frustration. And if you could just drag them to the appropriate spot and talk to us a little bit about what causes frustration.
+Speaker A:
+Yep. Just checking if I'm frustrated with anything. Too much. Yeah, let's leave that here. Business rules and functional is similar anyway. Yeah.
+Speaker B:
+Okay.
+Speaker C:
+So I see that UI testing is the most frustrating aspect of this process that you mapped out for us. Can you.
+Speaker A:
+I'm not frustrating. Sorry, let me quickly. Ah, because it was green and the other one was red. Yeah, I had that the other day already. Yep. Now we're talking.
+Speaker C:
+Okay, so functional testing. Then can you talk to us about what drives some of the frustration for you there?
+Speaker A:
+Yeah, that's a little bit my lack of understanding of the JavaScript debugger. And that is, I think, due to me just not working with it enough because I'm often diving into domain CSS work again. And then here and there I do, I do touch quite a bit of JavaScript too, but often stuff where I'd rather need, for example, the view specific dev tools and not the debugger. When I then finally have something where the debugger could be useful, I'm not familiar enough with it to easily use it. And not because, I would say not because of the way it's created, so the UI of the debugger, but more because of the complexity of it.
+Speaker C:
+Can you talk to me a little bit more about what is complex about it?
+Speaker A:
+It's the fact that you have breakpoints, so you have a statement in JavaScript you can use called debugger that makes the debugger pause when you reload the page and then you can actually dive into the functions once I'm in There it's usually a bit tricky for me to find the the actual variable, not the variables the values of the variables I'm looking for at that time. And that's more understanding how JavaScript and the debugger interact and where in my function I am at the moment. And that's sometimes a little frustrating because it's just something you get I think very quickly used to if you're using it often enough which I don't do.
+Speaker C:
+Out of curiosity. Why is that not something you do?
+Speaker A:
+Because I concentrate more on HTML so more on the domain CSS work generally and because the JavaScript work I do at the moment focuses on view where the. Where it's the view specific debug tools that you're using them and the debugger more for vanilla chairs which I if I touch anything it's usually simpler jQuery stuff where I don't need to debugger for and when I have more interesting complex vanilla chairs that's a bit rare at the moment due to either futures or simpler order.
+Speaker C:
+Gotcha. And then I see accessibility testing is about on par with functional testing in terms of frustration.
+Speaker A:
+Yeah, that's more also because I'm not doing it often enough and therefore I always have to if I can and won't spend the time to improve a code base here, let's say forms for example and images and stuff. I'd have to go back to finding documents again to read through to what would be good to be done, what needs to be done for a single AA or AAA notes or level of accessibility. And yeah, because it's a bit rare so you'd have to read about it again and again every now and then. And so that's it doesn't I can't work away as easily as I do with other stuff that I do every day.
+Speaker C:
+And where are some of the sources that you go to to help you re familiarize yourself with accessibility testing?
+Speaker A:
+Usually I plunge it in my search end up at the W3C which then is a bit much. Then I usually go back to mdn. But yeah, MDN is usually my go to tool for most of these questions or stack overflow depending what come so stack overflow if it's a specific question. MDN usually if I know already what I'm looking for interest. Need the whole picture again.
+Speaker C:
+Great. So I want to dig into something that you said where it's part of the frustration is that you don't do it often enough. I would love it if you could talk to us about how much time as a developer you end up spending on testing?
+Speaker A:
+That's a good question. Let me think. I mean to an extent I would even call. So I while I'm coding we have auto refresh on. On the browser and each time something changes I'll directly check it. That's already see me testing. Therefore it would be almost 30. 30, 40% I guess. But proper testing it depends a little bit on the project. For example, if there is. If it requires i11 or other older browsers, then it becomes bigger. If you have a lot of mobile testing and you need to test on phones and tablets all up, let's say 30% plus minus 10 makes sense.
+Speaker C:
+How do you feel about spending 30 to percent plus minus 10% on testing?
+Speaker A:
+I think it's necessary. I think it's good.
+Speaker C:
+And can you elaborate a little bit more about that?
+Speaker A:
+For me, yeah, it's something required for the quality of the product in the end shipping. So it's. It is part of development by what people say. I'd rather develop and not test so much. I think testing is part of development because you also have different parts of development like just making the Beer framework you're building at the moment to work or then going into things like accessibility or proper UX testing. All of these things Interlink I think therefore I think it's just part of the workflow.
+Speaker C:
+Makes sense. And as part of your workflow, how big would you say your test suite is?
+Speaker A:
+My test what suite? Ah, not big primarily the browser tools or only just thinking if we have tools running that tell us if something goes wrong on the website, on websites automatically when something fails in the console stuff for users. I was just thinking if that is testing as well. If it's. That could be then part automated testing if you bend the rules a little bit. But yeah, no automated testing. So it's all manual at the moment.
+Speaker C:
+What are some of those tools that you have running in the background?
+Speaker A:
+That Sentry.
+Speaker C:
+Gotcha. And why are you not doing any automated testing right now?
+Speaker A:
+Because I haven't had the time to dig into it. It was always a new project instead.
+Speaker C:
+And when you say dig into it, what would that look like for you?
+Speaker A:
+I did some research already on different automation tools like Puppeteer and whatnot. And it is cost and time to spend to test any of them to actually get into understanding what are the requirements, how are they used so doing, doing that all from scratch, how to enter, how they interact in your different projects. And it would be always. Because the projects look quite different. It would always be a different approach. And then besides getting an idea what the difference is between them, I'll just type in Puppeteer. Yeah, okay. That's my history. So I'll checked Selenium, Puppeteer, Playwright the other day and Cypress. I think there were the four where I had a look at and had a look at differences at some articles at the GitHub repos, at their issues in the GitHub repos to see what their problems is in cross browser testing. Because I think Puppeteer was only for Chrome, for example, only running on the Chrome basis. But they might expand to Firefox soon. And I think the new thing from Microsoft, Playwright, they had already support for Firefox as well and other stuff. So besides the research, the initial research to make up your mind where you want to spend the time on playing around with one of the tools is then later the cost to actually implement it. And yeah, that's haven't had the time for that.
+Speaker C:
+And how would you go about evaluating the cost to implement?
+Speaker A:
+So with the initial part of the initial research to see what, how familiar does the structure of the code the tools require looks to me that means the more familiar it is to me, I hope will be easier to implement the size of the community or how frequently the tools are updated. And it's just been resolved so that if stuff breaks or doesn't work quite in the environment I'm using that it might be fixed sooner rather than later. What else? There is definitely more. And then I have to check my own project to see what would be good parts or minimum requirements of stuff that I need to have tested. And then therefore if it's like 10 files or 10 functions or is it 100 functions, then I have an idea how much stuff I need to be writing. And then I hope I get an idea sooner rather than later to see how much time it might cost me.
+Speaker C:
+With the manual testing that you do right now, how would you describe what it's like to maintain the test cases that you have?
+Speaker A:
+What are test cases for you?
+Speaker C:
+I'm sorry, there's a little bit of a choppy audio feedback.
+Speaker A:
+Sorry, what do you mean with the test cases I have?
+Speaker C:
+Well, we asked about the size of your test suite and you mentioned that, you mentioned, you talked to us about what the size of that test suite was. So within that, what test cases do you have and how do you maintain those? And if that doesn't mean anything to you, you can ignore the question.
+Speaker A:
+Yeah, no, doesn't mean anything. Sorry.
+Speaker C:
+No worries. So, moving on from that question, are there. You've talked a little bit about the tools that you use to help you test. Are there any tools or frameworks that tests interact with?
+Speaker A:
+I'm using the UJS add on in the DevTools. Is that something? Yeah. Then I used the React DevTools at some point, but primarily Biona.
+Speaker C:
+Okay. While you're testing, how often do the tests find a problem in the application versus it being an issue with the test itself?
+Speaker A:
+I would say always. Yeah, usually it's my code that I have to fix as it's not automated testing. I think that would be. I think the question might be more suited for automated testing. So if I'd write code in testing and in development, then I could have bugs in either of them.
+Speaker C:
+Okay, so we've talked a lot about the test types that you do run. Are there any types of testing that you.
+Speaker A:
+Automatic tests.
+Speaker C:
+Right. Aside from those.
+Speaker A:
+Nothing I can think of.
+Speaker C:
+Okay.
+Speaker A:
+I'm pretty sure I'm missing any, I assume, but nothing I. Otherwise I would do it.
+Speaker C:
+Gotcha. Okay. John, would you like to go through the rapid fire questions?
+Speaker B:
+Yeah, I'm totally game for that. So, Albert, this next section, it might feel a little rapid fire. I'm just going to ask if you've heard of some of these terms before and if you have, I'd love for you to elaborate on them. If you haven't, just let me know.
+Speaker A:
+Good. Cool.
+Speaker B:
+Perfect. We've talked a little bit about cross browser testing. Have you ever heard of anything called Playwright?
+Speaker A:
+Yep, just mentioned it before. It's one of the automated testing tools that just came out from Microsoft.
+Speaker B:
+I know that you say you don't do automated testing, but do you have any. Any feelings on that?
+Speaker A:
+I'm quite intrigued by Playwright because I think it's similar to Puppeteer, but they directly created it with more cross browser options.
+Speaker B:
+All right. How does end to end testing sound to you?
+Speaker A:
+Also part I have to. I started reading on it several times, but haven't dived into too much yet.
+Speaker B:
+All right, can I ask, do you know any tools or any. What do you know about end to end testing? I guess.
+Speaker A:
+Not enough to elaborate on it at the moment.
+Speaker B:
+Okay, sounds good. Have you ever heard of anything called Selenium or Cypress?
+Speaker A:
+Yep. Yeah. Yeah, yeah. I researched them in the same moment that I did Playwright and puppeteer. So. And I think long. Yeah. Several years ago I was working in a company where one of our back end devs, he wrote a lending test for us. So then taking the screenshot, checking that everything Works correctly, going through the forms automatically, et cetera, et cetera. I assume that if you tell me what end to end is, I'd say yeah, I've done that. But because I haven't written the selenium tests, et cetera. So I guess I wasn't contact enough with people or read enough about it that there's a bit of a. There's some hints I'd be there again.
+Speaker B:
+I just want to know what you know now. So you're doing a perfect job. Fair enough. What about integration testing? Does that sound familiar?
+Speaker A:
+Yeah, it sounds same thing. I couldn't elaborate on it now, but yeah.
+Speaker B:
+Awesome. How about this thing called performance testing? Do you do any of that?
+Speaker A:
+I check. Yeah, we do some performance testing for the website with online tools. So speed test primarily that's. Give me a second, I'll just bring up the URL. Was it webpagetest.org I used quite a bit and other tools. One is called pingdom. Com, but I think it's just not as accurate. So webpagetest. Org for speed testing on performance, not so much on memory stuff yet, but sometimes bringing up the performance tab on the dev tools and then closing it again because I don't quite get it.
+Speaker B:
+Yeah, that's perfect. Alison.
+Speaker C:
+I was going to ask where in this workflow performance testing would come into play since it wasn't something that we had talked about yet.
+Speaker A:
+Sorry, can you repeat?
+Speaker C:
+Yeah. So you said you have done performance testing. I'm just curious where in this workflow it might come into play.
+Speaker A:
+That depends if we pick it up because usually our environments are smaller, so they are usually more perform more. They don't have to perform as much stuff, but sometimes they also can slower than the actual production environment and then we can pick stuff up there already. That's then mostly not for me. It was mostly then if you had backend stuff where some pipes were just a bit slow, some queries. My speed testing comes much later for our main website. That's when we have for example SEO tests and they bring up. It should also be quicker to come higher up in search engines and then we start the site speed testing and optimize there.
+Speaker B:
+Awesome. Real quick. Have you ever heard of a tool called Lighthouse?
+Speaker A:
+Yep. Yeah. I think on one of the questions before this Lighthouse would be also nice to have in Firefox as well as built in. In Chrome. I'm using it here and there though. I think that webpagetest. Org is. Yeah, I like it a bit better. Yeah. But I would say they do a Little bit similar things. Awesome.
+Speaker B:
+Have you ever heard of visual testing? I think you kind of tapped on this earlier, but I just want to double check.
+Speaker A:
+Yeah, that's kind of what I'm doing every time I'm opening a browser. Yep.
+Speaker B:
+How is maintenance like that for you?
+Speaker A:
+Okay, maybe I haven't heard of visual testing.
+Speaker B:
+Well, here's another term, screenshot testing. Have you ever tried that?
+Speaker A:
+I think that was done with Puppeteer, with Selenium. Screenshots taken automatically of particular steps and websites. And then you add them. Yeah. And then you can manually test them, I guess. Yeah. So that was about it. About that for me.
+Speaker B:
+Awesome. Thank you. What about component testing?
+Speaker A:
+No, I have an idea, but I don't think that applies.
+Speaker B:
+I'd love to hear your idea. What is it?
+Speaker A:
+No, it's more misty putting together different terms, because obviously we're programming components in Vue, so in our JavaScript libraries. So if it's Reactor, View or Angular, it doesn't really matter as components. We test these components, but I doubt that it's actually component testing.
+Speaker B:
+You're not wrong from my understanding, but again, you would be the expert compared to me. So do you typically find that components are running in isolation or do you. How do you run your components?
+Speaker A:
+They don't for me, they should. So that's something. If. I guess if I would program in C or whatever, it would be much more isolated in view. For example, you try to make them quite isolated, but usually they have always some interaction with the outside. So ideally you could. You could then reuse them. Sorry, just one sec. Reuse them independent of the outside, wherever you are. But currently, from my experience, there are usually connections to the actual project here, so you try still to have it as clean as possible.
+Speaker B:
+And just one more unit testing.
+Speaker A:
+Yeah. Also read a bit about it, but not enough to elaborate.
+Speaker B:
+We'll tell you what, Albert, I think, Jane. So do you have some questions? No, not. Not specific ones. I don't think so. Yeah, this has been very interesting, but I think the things that you've already asked, I feel like, are the things that I, you know, was hoping you would ask. So, yeah, from my point of view.
+Speaker A:
+It'S like, been the right set of questions.
+Speaker B:
+Allison, do you want to take it back over?
+Speaker C:
+Yeah. So, Albert, with everything that we covered today, knowing that we wanted to talk to you about web testing, I'd love to flip the conversation back over to you and just see if there's anything that we haven't talked about that we should have talked about or things that you want to make sure you have the opportunity to share with us.
+Speaker A:
+I think it was pretty actually. So anything I heard or read about testing was covered. And yeah, notes from my side. It's over clearly. But I knew that already from when I filled out the forms that I need to dive into all the automation testing options much more. But I know that for a few years already. So yeah.
+Speaker C:
+Okay, well then I have one last question for you and then we can make sure that you're free in time to go take that call that's coming through in a few minutes. You've talked a little bit about on your projects, depending on if it takes mobile or tablet. I'm wondering if you could just talk to me a little bit about any differences you experience when trying to test for those different types of devices.
+Speaker A:
+Oh yeah, okay, true. Good question because that is really something we haven't tapped on yet so much. Usually most of that I can do in the devtools on the browsers on the desktop. So just by resizing screen sizes, etc. There is just the thing that the sizes might not be 100% accurate because you don't have the Chrome outside the browser Chrome. So it might be actually smaller the window on the devices. Then the touch is just. I think in Firefox it doesn't quite work. So I just found a bug yesterday and in Chrome also they mimic it so we test it on the device. What's pretty cool in Firefox is the. Sorry, I'm just bringing up my devtools again. Have the right term for it is. No, it's not here. It's about. About debug, I guess. About debugging. It is now. Yeah. With. About debugging in Firefox you can plunge in. I can plunge in my Android phone with Firefox on it with USB and then I have the dev tools, my desktop dev tools with the open website on the phone and can debug there much better on the phone than usual. So that's one of the best tools for if you really have an issue that you can't solve visually. Desktop. So it's something I rarely use. Sadly for the. How cool it is. Luckily I guess I don't have to. But yeah, that's something. And yes. Did that answer all your question or was there a little bit more where I lost my.
+Speaker C:
+That answered all of my questions.
+Speaker A:
+Yeah.
+Speaker C:
+Look. Yeah. Anybody else have any other questions for Albert? Okay, great. Well we will give you 10 minutes back in your day. But thank you so much for meeting with us and in talking to us about your experiences with testing.
+Speaker A:
+Thank you for having me.
+Speaker B:
+Yes, thank you.
+Speaker A:
+Awesome.
+Speaker B:
+Thank you, Albert.
+Speaker A:
+All the best. Thanks so much. When do you reckon this, the actual research might go? What's the time frame? Or when it might get published?
+Speaker C:
+Great question. So we have two more interviews coming up to tomorrow. And then while we've been doing the interviews, John and I have been going through and doing some analysis of them. The goal is for us to have that report done by the end of February and sharing it out with our stakeholders. And then from there, it will be some decisions that each sponsor behind this work will have to make about what is going, what actions are going to be taken coming out of this work. But I would, you know, I know for sure that we'll be done with this research and the report will be done by the end of February. And then it'll just take a little bit of time from there for everybody to regroup and make some decisions.
+Speaker A:
+Awesome. Good luck with that. All the best.
+Speaker C:
+Thank you and thanks again.
+Speaker A:
+Same. Bye. Bye. Take care.

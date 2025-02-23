@@ -11,6 +11,10 @@ class Settings:
     access_token_expire_minutes: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
     client_url: str = os.getenv("CLIENT_URL")
 
+    neo4j_uri: str = os.getenv("NEO4J_URI")
+    neo4j_user: str = os.getenv("NEO4J_USERNAME")
+    neo4j_password: str = os.getenv("NEO4J_PASSWORD")
+
     def __init__(self):
         if not self.openai_api_key:
             raise RuntimeError("OpenAI API key not found. Ensure it's set in the .env file.")

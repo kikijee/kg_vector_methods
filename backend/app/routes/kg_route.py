@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, File, UploadFile, Request, Response
-from ..service import kg_service
+from ..service import ky_service_ollama, kg_service
+import json
 
 
 router = APIRouter()
@@ -15,6 +16,17 @@ def test(req: Request):
     
     except Exception as e:
         print(f"Error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@router.post("/answer_question")
+async def answer(req: Request):
+    try:
+        body = await req.json()
+        user_input = body.get("user_input")  # Access user_input from the parsed JSON
+        result = kg_service.answer_question(user_input)
+        return result
+    except Exception as e:
+        print(f"Error route: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 

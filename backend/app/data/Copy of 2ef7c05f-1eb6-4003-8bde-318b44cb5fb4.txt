@@ -1,0 +1,158 @@
+Speaker A:
+Okay, so you were talking about building utilities for yourself.
+Speaker B:
+Yeah, so I usually build just personal projects stuff. Not like I, I don't usually do client work. I just build. Build various things for myself. I also have my. A website that I've worked on that, that I do that I put a lot of work to on. And so that's kind of in lieu of random side projects that I can show off.
+Speaker A:
+Okay, awesome. Well, one of the things I'd love to do today is learn about your process as a developer. So I have an activity that I'd like us to do. I'm going to put a link into chat and if you go ahead and open that up.
+Speaker B:
+There we go.
+Speaker A:
+So what you'll see here in a minute is a horizontal line representing time. And I'd love it if you could just start by using the Add event feature and walk me through what your development process looks like.
+Speaker B:
+So I should note I also like designing things. I'm also a designer. So it's kind. It's a little rough to. It's a little bit of. That kind of melds together.
+Speaker A:
+And you can think about doing like, you can map out both. I guess maybe a different way to frame it would be like what a typical project process might look like for you from both the design and development standpoint.
+Speaker B:
+Sure. Height is just random. Yeah.
+Speaker A:
+For now, it doesn't matter. See.
+Speaker B:
+A lot of. I'm a bit of a perfectionist. Okay. How do I. There we go together. So I don't usually have a testing phase. I usually just once I have the. I. I'll design the interface, or rather code the interface, and then I'll work on any backend things or features or extra things that aren't immediately visible to the user. That's not what I want to do. Oh, there we go. Okay.
+Speaker A:
+They just stack on top of each other in the middle.
+Speaker B:
+Okay, There we go. Okay. I mean, I. One of the reasons I said. I put it in the survey, I said that I didn't feel. That I didn't. That I felt uncomfortable about the testing. I didn't like the situation of testing. And in, in the, in the. On the web right now, I don't think that there are. I don't think it's widely. I, I don't think it's easy enough for people to get into. So that. So, so like, like, for example, I don't know. I know that it's important. My only experience is using Cypress and that, that, that's. That's very bulky on the application.
+Speaker A:
+So and can you talk to me a little bit more about what's bulky about it?
+Speaker B:
+It uses its own. First of all it has. It has its own file structure, folder structure which isn't very portable. So you can't use. You can't like. Right. It's not. It's like Mocha and Chai and stuff like that. Those can sometimes be framework agnostic but these that Cypress. When you. When you write your test you're writing them in Cyprus also it's you download you. You have to run the Electron app and there's a lot it. The just the physical. The runtime for testing is kind of is very heavy. It's not like when you just a simple command line tool.
+Speaker A:
+And you said you think it's hard for developers to get into right now. What makes it hard?
+Speaker B:
+I think you know there's not a lot of. It's presented as an advanced step for developers. It's not built into the development process in terms of like for beginners told how to test your. This is how you test your application. The if. If you want to do integration testing or if you want to do use your test the user interface then you're going to have to use something like what it's called no like Selenium or you're going to have to use things that just put. Put a lot of load time on and it just puts a lot of extra weight that for that. If you. If you're running a simple project you don't necessarily want.
+Speaker A:
+And what do you. Could you describe load time to me.
+Speaker B:
+I think if it takes more than you know as a as when you build websites they say that like if it takes more than like half a second to load then the use. Then there's the bounce rate increases. I don't know if that's actually true. I've heard various things. But the point is that if it takes like more than three seconds for the command line tool to give any output whatsoever to get started then that's a big turn away because if that's. If it. If it takes that long to get started then how long is going to take to run the whole thing and if I make a change then how often am I going to be running this and I have to wait every time I make a change and so.
+Speaker A:
+Gotcha. So in this process that you've mapped out right now, how would testing factor into that or does it.
+Speaker B:
+So the testing doesn't really factor into it that much because I haven't found a very good method. The testing that I do is like. I mean I design with accessibility in mind. So that's. And that. So that's not really a testing thing. That's more of a. As I'm coding I take care of oh it needs a role or something. An ARIA role or something. But the. I do like running like if I'll run Axe as accessibility tool or I like. Or Lighthouse or like Lighthouse is a good example of a testing tool I think because it's very accessible and it's a one click thing.
+Speaker A:
+Gotcha. And just have some questions here. I'm looking at around accessibility testing. So you say that you. This is kind of baked into your process. Are there how like how. I'd like to understand a little bit more of like how that works in your process and how you do approach accessibility and how you know if it's working the way you intended to.
+Speaker B:
+So I really should be testing with a screen reader. I don't. I haven't found a good screen reader for Linux, but I'm on Windows so that's no excuse. I usually I, you know you try to. I try to follow best practices like use. Like you should. Like the code should be readable to a human. You should be able to see like if it's a link, it shouldn't be a division, it should be an anchor and it should be simple. It should it the. You know. You know, so what. Like. Like if it's made the way it was meant to be, if it's built the way it was meant to be built, then it's inherently going to be more accessible because it's more. It's more likely for dare to be compatibility. I. If there's I guess some random examples. If, if there's a. If I'm building a button like if I'm building a navigation bar. So I spent like a day or not a day, a couple hours googling how to. Whether it's better to have the NAV inside the header or that you have the NAV on the whole header and NAV as the closing element. And which is better? Which will. What does the. What does the screen reader want to want to see when there. There's. When I, when I make a nav. For another example, when I make a hamburger icon I usually do it with css not. Not an svg. So I make sure to wrap that in an element that I put as a role of none and then I put an ARIA label or something.
+Speaker A:
+Gotcha. You mentioned you like Lighthouse because it's a one click thing. Can you elaborate A little bit more on why that setup works for you.
+Speaker B:
+Sure. I think that even developers, while we like to believe that we can. That we. That were. We like complicated stuff. It's very, it's, it's. It's much more easy. The developer experience is also very important and when it doesn't necessarily need to be. What I like about Lighthouse is not that it's a short, a short. It's not that it takes a short time, it's that it takes. Is that it's straightforward, it's dependable, you know exactly what you do and you do the same thing every time. And there are no, you know, if you're doing, if you're using Cypress, then you have to build. You have to set up the whole project with Lighthouse. You know, it'll work on any project because it's any website and you just click the button and I happen to like Firefox's Accessibility Pane. I think that's a big plus because it's very. It's one place that you can see.
+Speaker A:
+Everything makes sense and you have used. Actually that's a different question. You say that trying to understand testing is not very helpful for new web developers.
+Speaker B:
+How.
+Speaker A:
+Where do you go to learn about different tools that might be for testing or how testing is evolving?
+Speaker B:
+I'll eat. I'll either search. Search it in a search engine or search it in GitHub and look for something that. Look for what pops up. I'll use. I think there's a tool NPM Compare where it suggests random. A bunch of comparable NPM packages that accomplish basically the same thing. And then. So that will give you an idea of what, of what the top packages are that accomplish what you want to accomplish.
+Speaker A:
+So gotcha. And what. What would be some terms that you might use when you open up?
+Speaker B:
+Say integration testing, end to end testing. I don't really know a lot of the meaning of the terms, which is another piece. That piece. I think that people like to throw around these terms but they're very clunky, very complicated, I think. But anyways, I'll use the search testing. Accessibility testing usually has word testing in it. Something some prefix.
+Speaker A:
+Gotcha. And talk to me a little bit more about the types of websites that you're building. I see you've got Brainstorm Wireframe prototype. What does a typical project look like for you?
+Speaker B:
+So recently I've been. I mean I usually brainstorm and I don't really have anywhere that I specifically brainstorm. It's usually just in my head talking it out When I wireframe. I've recently begun wireframing on paper just because it's. It's much. I find it much simpler than using some sort of website. Yeah, sorry, I forgot the question.
+Speaker A:
+I was just curious, like what types of websites you're building? Like.
+Speaker B:
+Yeah, okay, thank you. I. So I have. I have my own website which is a portfolio website. It's. Or a personal website. It's just a, you know, it's just. It's a jam stack. Very light. I also have if some. There are a couple projects that I made that have websites, but usually when I'm designing a website, it's usually it's some sort of project that I'm excited about and then I get. And then I get bored of and I stop doing it. So yeah, I mean I have two actual websites that I designed. One's less of a design, more of a. I built a template for a website template for Eleventy js and I didn't really put that much thought into the create, into the design. I really based it on how my own website was at the time. So that's that. Yeah.
+Speaker A:
+Cool. So you have mentioned a couple things that I'm curious to learn more about. So you talked about the developer experience and given where you're at with your career and passion for web development, how would you describe the developer experience right now?
+Speaker B:
+I think it's very good. I like the. I think that people. It's hard to. It's hard to say that everyone should go to GitHub because that would mean that you're locking everyone into GitHub and if something goes wrong with GitHub, then everyone's lost and then it would just be confusing and it would be a monopoly or whatever. But it's also very useful because that's where everyone is and that. And it's a community that can. People can get started very easily. So I think in that sense the open source part is, you know, the Hacktoberfest type, type of issues and like small things, typos is very useful to get developers started in, you know, and contributing and then it. Then you learn more. Yeah, I really learned through YouTube videos. I haven't really watched YouTube videos in a long time, but I really use YouTube tutorial videos and you know, walkthroughs of code. That really helped me. I think the developer experience now is it's. There are a few specific tools that are the industry standard, like people designing Figma, they put their code on GitHub and they publish to NPM. No happens to be two of those are owned by Microsoft and that's so that two of them are whatever. Either way, the industry standard makes it very easy for people to get started because you know exactly what to do. There's no confusion about, well, should I use GitHub or GitLab? Well, no one's on GitLab. So you're using, you're going to use GitHub. I think that there are, I think that MDN, the existence of MDN and its completion and how complete it is in comparison to other languages documentation makes it very, I mean it was very comforting for me because I knew that I had somewhere to go if I need to know something.
+Speaker A:
+How long have you been developing?
+Speaker B:
+Two or three years.
+Speaker A:
+Cool. If you had the ear of Microsoft, Samsung, Google, Mozilla, what would be something that you would want to share with them that you think would help make the development experience better?
+Speaker B:
+Good question. I don't know. I mean I, I kind of feel like the company is like Microsoft. They can, they're only as powerful as their team of developers is and their justice and their team of developers is just as powerful as the open source community of any, of any given portion of the open source community. So I think that the companies wouldn't, I don't think that talking to a company would be as useful as, you know, getting a movement started or you know, publishing some, some sort of article and, or some sort of, or starting some sort of service and getting people interested and. Because that's really how change happens.
+Speaker A:
+And what would be some things that you think you'd want to change or what would be some good movements you'd like to see started?
+Speaker B:
+I think it would be nice to have kind of like testing for dummies, web testing for dummies or for. Maybe it needs a rebrand, I don't know because whenever I think of web testing, I think of something complicated and I don't think that should be the connotation. I guess more tools like Cypress that, you know, like, like. I don't, I happen not to like the, the way Cypress works because it's bulky and because I, because I, because I feel it. There's a lot of. It takes a lot of time and it's there, it locks you into their structure. But the, the fact is that they have that, that they're very good at what they do and that. And they're popular and I think that the more tools that we have like that then it just, it opens the community, it gears people, it gets people interested in It. So if, so if you only have a couple tools in there and they're not doing very, very good pr, you know, they're just like a random repository that has a contributing markdown but doesn't, doesn't like advertise, doesn't like, not advertise, but like doesn't try to get out there at all, then you're not really gonna. No one's gonna see it and no, no one's gonna see what you're doing.
+Speaker A:
+Makes sense with Cypress or even within your own work. Like, what are some browsers that you support?
+Speaker B:
+I usually, I. Browser support is always weird for me because it's, you know, I tell myself that I don't have to support IE like Internet Explorer. And then the most then, besides for Vivaldi, most popular browsers are either Chromium or Gecko. So they're. Chromium and Gecko are pretty similar. So I'm, I mean they're, they're pretty, they're. They're both pretty compatible. So it's, it's very hard for me to know like, how much I don't do a lot of browser testing just because I don't, you know, Like, I, like I assume that everything's going to work out and I think that the only tool I have to figure out whether something will work on all browsers is caniuse.com which does, which has the list of all the. It has information from. I don't know where from all different browsers for any CSS feature or any, any API. It'll tell you how many browsers supported and what percentage is globally which is useful if you want to look at a particular tool, particular API, but it's not useful if you want to see. Does my website conform to all browsers?
+Speaker A:
+Gotcha. Have you found any spot where you can see if your website conforms to all browsers?
+Speaker B:
+Yeah, there was one time that I built a website and I showed it to my mother and she was on her iPhone and she said the sound doesn't play. And I didn't know because I, because Safari is only, is only on Apple devices. So. Yeah. So I think. So I guess in that sense user testing, which is not very easy for bedroom developers. It's not very easy for, for people who don't, you know. You know, if you're, if you have a user base and you have a, if you have a lot of, if you have a clientele, then you have people with whom you can share it and you can test it with. If you're just building it for yourself, it's much harder to do. User testing.
+Speaker A:
+Makes sense. A lot of the questions I have left are more specific to certain types of testing, but since we've already covered that testing is difficult to learn how to do, I don't know that's applicable for this conversation. So I guess I would in the remaining time just flip it back to you and see if there's anything that we haven't talked about or things that you want to make sure that, that you're able to share during this interview.
+Speaker B:
+Okay. Thank you. I think that. I don't know. First of all, I think, I don't know how this interview process worked, but I think it's, it's really cool to me that I'm able to be a part of like a, like part, a part of a cert of a research study. And you know, it's, it's, it's, it's, it's very bolstering my confidence that I'm, that I'm able to like kind of get in there and make a difference. I think that people use the words end to end testing or integration testing or unit testing. Whenever I think of unit testing, I think of React. But I don't like using React for various reasons. And so to me it's like, well, I don't use React, so how can I use unit testing? Or I don't have a server, so how can I do integration testing? So like there are very classic examples that don't apply to everyone. And I think that I guess it's important for people to be aware of what type of testing is important, what different tests are available for which situations. Like I mostly do jamstack things sites. So you're like very, very lightweight HTML, CSS, some JavaScript. So for that there aren't very many testing tools besides for like browser extensions or things like that.
+Speaker A:
+And so the. Would you like to see more offered there?
+Speaker B:
+I think that I'd like to see more. I mean this is, this is a little weird because I'm, I like writing things and so I'm kind of digging myself in a pit here. But I'd like to see more articles or explanations online about. This is like not necessarily branded as a beginner thing but, but what, you know, you know, like how to do what, how to. Like these are the different types of web testing that are important and more like more documentation focused on testing because I know that it's important for, from, you know, intellectually. I know, I know that it's, it should be something important because you need to know how your application is going to work in the real world. But it's not very easy to. I feel like some of the information isn't getting out there about how to make it work.
+Speaker A:
+Right now. Are there areas or places of the web or things that you're doing to try and improve your understanding of testing?
+Speaker B:
+Not really. I find that every browser right now I'm using Edge, the development version insiders. That's because I wanted to check it out. It's. I find that every browser has a different tool like Edge has its own extension that's just for Edge from Microsoft that does Accessibility Insights. Firefox has the browser pane that has the dev tools pane that shows you the aria roles of the entire website. Chrome actually has more than one thing because when you. Or I guess Chromium would. I guess it would work on Edge too. When you click, when you hover over something it'll show over an element. It'll show you what the contrast is which is very useful. I mean you can't really do it. I guess you can do that in Firefox too I think. But I feel like every browser has its own way of doing things. It's not very uniform, which is not necessarily a bad thing except it doesn't. You know there are benefits to having something universal, to having a universal system because then it's portable, you could use it on any system and you don't necessarily need to use a browser to use it and.
+Speaker A:
+Yeah, gotcha. Cool. Anything else that you would want them to know?
+Speaker B:
+I think it's important to let begin like people who should be. Who are interested in testing or beginners. Oh I guess like testing has a bad rep that people think that it's like for high scale applications and it's like because it's. It's sometimes it's. It's very difficult. Sometimes it is very difficult to. You know like you can't always. Not everything works with Mocha. Like Mocha is great for random like for JavaScript libraries and modules but it doesn't necessarily work for websites. So I think it, I think that. So it has. The testing has. People think that it's very. It's something that like advanced developers do. It's like the next step and I think it needs to be sort of become embedded in. It needs to. People need like there's a pair. Like there needs a paradigm to be a paradigm shift where people start thinking about it as okay, this is part of the development process. Like you design, you develop, you test.
+Speaker A:
+And what do you think some of the barriers are that prevent that from being part of the development process right now?
+Speaker B:
+I think it's just the way it's evolved. I think that there are that. Currently people think of testing as an advanced thing partly because there are terms that are thrown around that it's not very easy to explain. And so people like to use those terms. Like when you're talking about making a website, you could use development, you could say code, you could say program. When you're talking about testing, it's hard to define integration testing in a phrase, in a couple of words. So it makes it more difficult for people who don't know what it means to understand what it means.
+Speaker A:
+Gotcha. Cool. Well, that wraps up my questions. So you have some time back in your day, but is there anything else that you want to make sure we cover?
+Speaker B:
+Not really, no. You said this, your. This is Mozilla's hired pinpoint.
+Speaker A:
+Yeah. Yeah. We've been working with them for coming up on five years now. And we wanted to do the MDN WebDNA study again in 2020 and that was published in December. And then coming out of that, we wanted to do some follow up research on web testing just to understand what that frustration is for developers.
+Speaker B:
+So this is an md. I thought MDN was, for some reason I thought MDN had cut a lot of, a lot of people.
+Speaker A:
+They did. In August they announced quite a large round.
+Speaker B:
+Yeah. So I didn't know that there were, that there was a lot, that there were many people left to do the study.
+Speaker A:
+That might partially be why we're working with them on it. Those who are left are busy trying to pick up the pieces. Yeah. And actually why I have you on the phone, since you did take the MD and WebDNA 2020 survey, did you have any feedback on that survey or like what?
+Speaker B:
+I don't really remember, but that's fair.
+Speaker A:
+And then with. Since you're aware of the layoffs at mdn, what you as a developer, how did that feel, hearing that announcement?
+Speaker B:
+Oh, oh, I don't really remember. I, I don't think that I was aware of it when it happened, but it, I'm, I know that in the, you know, the, in, in some, some of the more open source enthusiasts were a little crit, were critical of mdn, of Mozilla. They felt that Mozilla was moving away, was kind of shifting focus because MDN is very useful, is very useful and you know, and they were very critical of MDN and In light of other developments, like the Mozilla. I forgot what the VR faces avatar thing that I'm talking about.
+Speaker A:
+Yeah. I'm not deeply familiar with it, but I have heard of it.
+Speaker B:
+Yeah. Yeah, I don't, I don't really know that much about it either, but it seems like very random and so it, it just feels very unfocused. And so I've heard a lot of criticism of Mozilla from that. Gotcha.
+Speaker A:
+Makes sense.
+Speaker B:
+I mean, I don't find. I find that Mozilla does a great job as a company that's also open source and as an open organization that's like a big conglomerate that's able to work or presents itself as something akin to Microsoft or Git or GitHub or Google, but it's able to work there in the open.
+Speaker A:
+Mm. And what about that do you appreciate.
+Speaker B:
+I think that that's a very important model, a role model to have. Because it's hard when you have your. When you're, when, when, when you're, when you have no team, when you just have you. I decided to make a project and you just have a bunch of contributors and some of them are frequent and some of them aren't frequent. That can be very, that, that's very flaky in, in terms of your stability. When you, when you have something like, like Mozilla, that you have actual members of the team who are committed to working on these projects on a daily basis, and then you have contributors who don't, who could be frequent contributors but don't necessarily need to be, then that ensures stability and I think that it's a good role model to have for the open source community.
+Speaker A:
+Makes a lot of sense. Well, if you don't have anything else. I don't have anything else. I can give you 15 minutes back to your Sunday.
+Speaker B:
+Thank you.
+Speaker A:
+Yeah, thank you. I really appreciate the, that you shared today and I think your perspective on web testing is really helpful and it's really great to have your voice added to the study.
+Speaker B:
+Thank you.
+Speaker A:
+Okay, well, enjoy the rest of your day.
+Speaker B:
+Thank you.
+Speaker A:
+Bye.
