@@ -30,8 +30,7 @@ def define_chunks():
 
         # Split the documents into chunks
         files = text_splitter.split_documents(documents)
-        print("len of doc is ", len(raw_documents[0]))
-        print("files is ", len(files))
+        
         # Optionally remove the "summary" metadata if it exists
         for i in files:
             if "summary" in i.metadata:
@@ -43,49 +42,19 @@ def define_chunks():
         return {"define_chunks error": str(e)}
 
 
-def setup_indices(graph : Neo4jGraph):
-    # Ensure full-text index for Chunk text exists
-    try:
-        existing_text_index = graph.query("SHOW INDEXES YIELD name WHERE name = 'my_chunk_text_index' RETURN name")
-        if not existing_text_index:
-            graph.query(
-                "CALL db.index.fulltext.createNodeIndex('my_chunk_text_index', ['Chunk'], ['text']);"
-            )
-
-        # Check if vector index already exists
-        existing_vector_index = graph.query("SHOW INDEXES YIELD name WHERE name = 'my_chunk_vector_index' RETURN name")
-        if not existing_vector_index:
-            graph.query(
-                """
-                CREATE VECTOR INDEX my_chunk_vector_index
-                FOR (n:Chunk)
-                ON (n.vector)
-                OPTIONS {
-                    indexConfig: {
-                        `vector.dimensions`: 1536,
-                        `vector.similarity_function`: 'cosine'
-                    }
-                };
-                """
-            )
-    except Exception as e:
-        return {"define_graph error": str(e)}
-
-
 
 def define_graph():
-    print("line 78")
+    
     graph = Neo4jGraph(url = settings.p_neo4j_uri, username = settings.p_neo4j_user, password = settings.p_neo4j_password)
-    print("line 80")
+    
     embeddings = OpenAIEmbeddings(
         api_key=settings.openai_api_key
     )
-    print("line 84")
     #setup_indices(graph)
     documents = define_chunks()  # This should already return Document objects
 
         # Check if documents are indeed Document objects
-    print("line 89")
+    
     if not all(isinstance(doc, Document) for doc in documents):
         raise TypeError("All documents must be instances of the Document class")
     try:
@@ -101,7 +70,7 @@ def define_graph():
             embedding_node_property = "vector", #vector property hold the text embedding representation
             create_id_index = True,
         )
-        print("line 105")
+        
         return {
             "message": "Success"
         }
@@ -128,7 +97,7 @@ def perform_search(query: str, k: int = 1):
         print(f"Performing similarity search with query: {query}")
         results = neo4j_db.similarity_search(query, k=k)
         
-       
+        print("results is ", results)
         return answer_question(results, query)
         
     except Exception as e:
