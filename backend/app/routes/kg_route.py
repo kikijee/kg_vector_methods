@@ -23,8 +23,11 @@ async def answer(req: Request):
     try:
         body = await req.json()
         user_input = body.get("user_input")  # Access user_input from the parsed JSON
-        result = kg_service.answer_question(user_input)
-        return result
+        answer, cypher_query = kg_service.answer_question(user_input)
+        return {
+            "answer":answer,
+            "cypher_query":cypher_query
+        }
     except Exception as e:
         print(f"Error route: {e}")
         raise HTTPException(status_code=500, detail=str(e))

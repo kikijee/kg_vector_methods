@@ -32,20 +32,8 @@ class GraphResponse(BaseModel):
     entities: List[Entity] 
     relationships: List[str]
 
-client = OpenAI(api_key= settings.openai_api_key)
-graph = Neo4jGraph(url = settings.neo4j_uri, username = settings.neo4j_user, password = settings.neo4j_password)
-llm = ChatOpenAI(
-    model="gpt-4o-mini",
-    temperature=0.5,
-    max_tokens=None,
-    timeout=None,
-    max_retries=2,
-    api_key = settings.openai_api_key,  
-)
-
-
-
 def generate_graph ():
+    client = OpenAI(api_key= settings.openai_api_key)
     start = timer()
     prompt_template = """
     From the Project Brief below, extract the following Entities & relationships described in the mentioned format 
@@ -56,7 +44,7 @@ def generate_graph ():
     label:'Document',id:string,summary:string //Document is referencing the entire document; `summary` is a summary of the entire transcript; `id` is the file name included under Case Sheet before the transcript
     label:'Objective',id:string,text:string; //Objective that is mentioned in the text; `id` property is one word that summarizes the objective as a whole. This one word must only be in lowercase;`text` is the extracted body of text that talks about this objective, be sure that this field is the literal text from the document
     label:'Challenge',id:string,text:string; //Challenges that are talked about; `id` property is one word that summarizes the challange as a whole. This one word must only be in lowercase;`text` is the extracted body of text that talks about this challenge, be sure that this field is the literal text from the document
-    label: 'Tool', id:string; //Please mention ALL the tools that are talked about; `id` property is the specific tool mentioned in either the challenge or objective. If there is a space please use an underscore instead. This id should be in lowercase; 
+    label: 'Tool', id:string; //Please gather ALL the tools that are talked about; `id` property is the specific tool mentioned in either the challenge or objective. If there is a space please use an underscore instead. This id should be in lowercase; 
     Note: There can possibly be multiple challenges and objectives mentioned in one document limit 5 per `Challenge` and `Objective`
     
     2. Next generate each relationships as triples of head, relationship and tail. To refer the head and tail entity, use their respective `id` property. Relationship property should be mentioned within brackets as comma-separated. They should follow these relationship types below. You will have to generate as many relationships as needed as defined below:
@@ -82,8 +70,6 @@ def generate_graph ():
 
     file = glob.glob(r"./app/data/*.txt")
 
-    # loop here
-    
     for i in file: # i = file[i]
 
         file_path = i
@@ -119,15 +105,23 @@ def generate_graph ():
 
 
 def query_graph(user_input):
-    print("line 113")
+    graph = Neo4jGraph(url = settings.neo4j_uri, username = settings.neo4j_user, password = settings.neo4j_password)
+    llm = ChatOpenAI(
+        model="gpt-4o-mini",
+        temperature=0.5,
+        max_tokens=None,
+        timeout=None,
+        max_retries=2,
+        api_key = settings.openai_api_key,  
+    )
     cypher_generation_template = """
     You are an expert Neo4j Cypher translator who converts English to Cypher based on the Neo4j Schema provided, following the instructions below:
     1. Generate Cypher query compatible ONLY for Neo4j Version 5
     2. Do not use EXISTS, SIZE, HAVING keywords in the cypher. Use alias when using the WITH keyword
     3. Use only Nodes and relationships mentioned in the given entity types below
-    4. Always do a case-insensitive and fuzzy search for any properties related search. Eg: to search for a Client, use `toLower(client.id) contains 'neo4j'`. To search for Slack Messages, use 'toLower(SlackMessage.text) contains 'neo4j'`. To search for a project, use `toLower(project.summary) contains 'logistics platform' OR toLower(project.name) contains 'logistics platform'`.)
+    4. Always do a case-insensitive and fuzzy search for any properties related search. Eg: to search for a Tool, use `toLower(tool.id) contains 'neo4j'`.
     5. Never use relationships that are not mentioned in the given entity types below
-    6. When asked about projects, Match the properties using case-insensitive matching and the OR-operator, E.g, to find a logistics platform -project, use `toLower(project.summary) contains 'logistics platform' OR toLower(project.name) contains 'logistics platform'`.
+    6. When asked about challenges or objectives, Match the properties using case-insensitive matching and the OR-operator, E.g, to find a logistics platform -project, use `toLower(objective.summary) contains 'logistics platform' OR toLower(objective.text) contains 'logistics platform' OR 'logistics platform' OR toLower(challenge.text) contains 'logistics platform' OR toLower(challenge.summary) contains 'logistics platform'`.
 
     Entity Types:
     label:'Document',id:string,summary:string //Document is referencing the entire document; `summary` is a summary of the entire transcript; `id` is the file name included under Case Sheet before the transcript
@@ -142,11 +136,25 @@ def query_graph(user_input):
     Challange|HAS|Tool
 
     Examples:
+    Question: what is the common consensus on using selenium in throughout testing?
+    Answer: ```
+        MATCH (t:Tool {{id: "selenium"}})
+        OPTIONAL MATCH (o:Objective)-[:HAS]->(t)
+        OPTIONAL MATCH (c:Challenge)-[:HAS]->(t)
+        OPTIONAL MATCH (o)<-[:MENTIONS]-(d:Document)
+        OPTIONAL MATCH (c)<-[:MENTIONS]-(d:Document)
+        RETURN t.id AS tool, 
+            COLLECT(DISTINCT o.text) AS objectives, 
+            COLLECT(DISTINCT c.text) AS challenges, 
+            COLLECT(DISTINCT d.summary) AS documentSummaries
+    ```
+
     Question: What tools developers use to support testing?
     Answer: ```
         MATCH (o:Objective)-[:HAS]->(t:Tool)
-        RETURN t.id AS Tool, o.text AS ObjectiveText
-        ORDER BY t.id
+        OPTIONAL MATCH (o)<-[:MENTIONS]-(d:Document)
+            RETURN t.id AS Tool, o.text AS ObjectiveText, d.summary as DocumentSummary
+            ORDER BY t.id
 
     ```
     Question: How developers learn about the tools they use to support testing?
@@ -158,12 +166,10 @@ def query_graph(user_input):
 
 Question: {question}
 """
-    print("line 152")
     cypher_prompt = PromptTemplate(
         template = cypher_generation_template,
         input_variables = ["schema", "question"]
     )
-    print("line 157")
     CYPHER_QA_TEMPLATE = """
         You are an assistant that helps to form nice and human understandable answers.
         The information part contains the provided information that you must use to construct an answer.
@@ -177,11 +183,9 @@ Question: {question}
         Question: {question}
         Helpful Answer:
         """
-    print("line 171")
     qa_prompt = PromptTemplate(
             input_variables = ["context", "question"], template = CYPHER_QA_TEMPLATE
         )
-    print("line 175")
     try:
         chain = GraphCypherQAChain.from_llm(
             llm = llm,
@@ -192,7 +196,6 @@ Question: {question}
             qa_prompt = qa_prompt, #defines the structure for answering questions
             allow_dangerous_requests = True
         )
-        print("line 185")
         result = chain(user_input)
         return result
     except Exception as e:
@@ -204,14 +207,14 @@ def answer_question(question):
         result = query_graph(question)
         print("result is ", result)
         # print("intermediate steps is ", intermediate_steps)
-        # intermediate_steps = result["intermediate_steps"] #provides steps into the result
-        # cypher_query = intermediate_steps[0]["query"] #cypher query that was generated
+        intermediate_steps = result["intermediate_steps"] #provides steps into the result
+        cypher_query = intermediate_steps[0]["query"] #cypher query that was generated
         # database_results = intermediate_steps[1]["context"] #actual data fetched from Neo4j database
         
         answer = result["result"]
         end = timer()
         print(f"Completed in {round(end - start, 2)} seconds\n")
-        return answer
+        return answer, cypher_query
         
     except Exception as e:
         return {"error answer question": str(e)}

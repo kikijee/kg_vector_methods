@@ -15,6 +15,10 @@ class Settings:
     neo4j_user: str = os.getenv("NEO4J_USERNAME")
     neo4j_password: str = os.getenv("NEO4J_PASSWORD")
 
+    p_neo4j_uri: str = os.getenv("P_NEO4J_URI")
+    p_neo4j_user: str = os.getenv("P_NEO4J_USERNAME")
+    p_neo4j_password: str = os.getenv("P_NEO4J_PASSWORD")
+
     def __init__(self):
         if not self.openai_api_key:
             raise RuntimeError("OpenAI API key not found. Ensure it's set in the .env file.")
