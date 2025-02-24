@@ -13,3 +13,13 @@ def test(req: Request):
     except Exception as e:
         print(f"Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/perform-search")
+async def answer(req: Request):
+    try:
+        body = await req.json()
+        user_input = body.get("user_input")  # Access user_input from the parsed JSON
+        return vector_service.perform_search(user_input, 5)
+    except Exception as e:
+        print(f"Error route: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
