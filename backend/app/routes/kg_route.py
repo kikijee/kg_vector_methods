@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, File, UploadFile, Request, Response
-from ..service import ky_service_ollama, kg_service
+from ..service import kg_service
 import json
 
 
@@ -18,7 +18,7 @@ def test(req: Request):
         print(f"Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
     
-@router.post("/answer_question")
+@router.post("/answer-question")
 async def answer(req: Request):
     try:
         body = await req.json()

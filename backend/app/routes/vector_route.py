@@ -4,7 +4,7 @@ import json
 
 router = APIRouter()
 
-@router.post("/define-graph")
+@router.post("/generate-graph")
 def test(req: Request):
     try:
         print("inside route")
@@ -14,7 +14,7 @@ def test(req: Request):
         print(f"Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-@router.post("/perform-search")
+@router.post("/answer-question")
 async def answer(req: Request):
     try:
         body = await req.json()

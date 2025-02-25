@@ -16,3 +16,4 @@ langchain
 requests
 langchain-neo4j
 langchain-openai
+langchain-community
