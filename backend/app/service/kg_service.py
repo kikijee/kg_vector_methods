@@ -6,7 +6,7 @@ from string import Template
 from ..config import settings
 from timeit import default_timer as timer
 import os
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing import Optional, List
 from langchain.prompts.prompt import PromptTemplate
 from ..utils.neo4j_util import save_to_neo4j

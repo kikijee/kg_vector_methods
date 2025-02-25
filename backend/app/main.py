@@ -1,4 +1,4 @@
-from app.routes import kg_route, vector_route
+from app.routes import kg_route, vector_route, kg_vector_route
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -22,6 +22,7 @@ app.add_middleware(
 )
 
 # include different routes here
-app.include_router(kg_route.router , prefix='/api')
-app.include_router(vector_route.router, prefix='/api')
+app.include_router(kg_route.router , prefix='/api/kg')
+app.include_router(vector_route.router, prefix='/api/vector')
+app.include_router(kg_vector_route.router, prefix='/api/kg-vector')
 
