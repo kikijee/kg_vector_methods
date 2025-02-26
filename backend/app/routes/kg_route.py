@@ -1,11 +1,14 @@
-from fastapi import APIRouter, HTTPException, File, UploadFile, Request, Response
+from fastapi import APIRouter, HTTPException, Request
 from ..service import kg_service
-import json
-
+import logging
+import traceback
 
 router = APIRouter()
 
-    
+# Configure logging
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
+
 @router.post("/generate-graph")
 def test(req: Request):
     try:
@@ -15,8 +18,9 @@ def test(req: Request):
         }
     
     except Exception as e:
-        print(f"Error: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        error_details = traceback.format_exc()
+        logger.error(f"Error in api/kg/generate-graph: {error_details}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
     
 @router.post("/answer-question")
 async def answer(req: Request):
@@ -29,7 +33,8 @@ async def answer(req: Request):
             "cypher_query":cypher_query
         }
     except Exception as e:
-        print(f"Error route: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        error_details = traceback.format_exc()
+        logger.error(f"Error in /api/kg/answer-question: {error_details}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 
