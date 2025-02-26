@@ -195,9 +195,6 @@ def insert_data(data):
             )
         )
         """
-        chain = GraphCypherQAChain.from_llm(
-           ChatOpenAI(temperature=0), graph=graph, verbose=True
-)
         transformed_data = []
         for file_chunks in data:  
             if not file_chunks:
@@ -255,28 +252,6 @@ def perform_search(query: str, k: int = 1):
         # Initialize the vector store
         embeddings = OpenAIEmbeddings(api_key=settings.openai_api_key)
         client = OpenAI(api_key= settings.openai_api_key)
-#         general_system_template = """
-        # You are an AI assistant helping to answer questions based on provided information. 
-        # The information you will use is authoritative, and you should only rely on it to construct your response. 
-        # You should never attempt to correct or verify the information using external sources or internal knowledge. 
-        # If the provided information is incomplete or insufficient to answer the question, respond with "I don't know" rather than making assumptions.
-
-        # Your goal is to construct a human-readable answer that is well-structured, clear, and relevant to the question.
-        # Please ensure that the answer uses all relevant parts of the provided information, formatted as necessary.
-        # Do not mention that your answer is based on the provided information.
-        # If you are provided with related entities (e.g., tools, challenges, objectives) connected to the information, include them in the answer appropriately.
-# """
-#         general_user_template = "Question:```{query}```"
-#         #A list of templates, where the system message provides the model's instructions
-#         #instructions and the human message provides the user's input
-#         messages = [
-#             SystemMessagePromptTemplate.from_template(general_system_template),
-#             HumanMessagePromptTemplate.from_template(general_user_template),
-#         ]
-#         qa_prompt = ChatPromptTemplate.from_messages(messages)
-        
-        
-        
 
         neo4j_db = Neo4jVector.from_existing_index(
             embedding=embeddings,
@@ -324,7 +299,7 @@ def perform_search(query: str, k: int = 1):
 
         Context:
         $results
-"""
+        """
         new_prompt = Template(prompt).substitute(query = query, results = results)
         response = client.chat.completions.create(messages=[{"role": "user","content": new_prompt,  }],model="gpt-4o-mini",)
         
