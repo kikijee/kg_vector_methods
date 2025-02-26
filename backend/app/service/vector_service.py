@@ -9,20 +9,23 @@ from openai import OpenAI
 from langchain.schema import Document
 import glob
 from langchain.text_splitter import CharacterTextSplitter
+from ..utils import data_retrieval_util
 
 def define_chunks():
     try:
-        # Get all text files in the directory
-        raw_files = glob.glob(r"./app/data/*.txt")
+        # # Get all text files in the directory
+        # raw_files = glob.glob(r"./app/data/*.txt")
         
-        # Read the content of each file into raw_documents
-        raw_documents = []
-        for file in raw_files:
-            with open(file, "r") as f:
-                raw_documents.append(f.read())
+        # # Read the content of each file into raw_documents
+        # raw_documents = []
+        # for file in raw_files:
+        #     with open(file, "r") as f:
+        #         raw_documents.append(f.read())
+
+        raw_documents = data_retrieval_util.fetch_files()
         
         # Convert raw documents into Document objects with 'page_content'
-        documents = [Document(page_content=doc) for doc in raw_documents]
+        documents = [Document(file["page_content"], metadata={"file_name": file["metadata"]["file_name"]}) for file in raw_documents]
         
         # Chunking strategy: Each chunk will have at most 1000 characters
         # 20 characters will overlap between chunks to add context
