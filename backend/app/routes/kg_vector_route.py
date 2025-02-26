@@ -18,10 +18,11 @@ def test(req: Request):
         }
     
     except Exception as e:
-        print(f"Error: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        error_details = traceback.format_exc()
+        logger.error(f"Error in api/kg/generate-graph: {error_details}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
-@router.post("/perform-search")
+@router.post("/answer-question")
 async def search(req: Request):
     try:
         body = await req.json()
@@ -31,7 +32,8 @@ async def search(req: Request):
             "data":data
         }
     except Exception as e:
-        print(f"Error: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        error_details = traceback.format_exc()
+        logger.error(f"Error in api/kg/generate-graph: {error_details}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 
