@@ -19,6 +19,14 @@ from langchain.text_splitter import TokenTextSplitter
 from neo4j import GraphDatabase
 from pydantic import BaseModel
 import json
+from langchain.prompts import (
+    ChatPromptTemplate,
+    HumanMessagePromptTemplate,
+    SystemMessagePromptTemplate
+)
+from langchain.chains.qa_with_sources import load_qa_with_sources_chain
+from langchain.chains import RetrievalQAWithSourcesChain
+
 
 class Entity(BaseModel):
     label: str 
@@ -156,7 +164,7 @@ def extract_entities_from_text(text: str):
 def insert_data(data):
     try:
         # Connect to Neo4j
-        driver = GraphDatabase.driver(settings.neo4j_uri, auth=(settings.neo4j_user, settings.neo4j_password))
+        driver = GraphDatabase.driver(settings.p_neo4j_uri, auth=(settings.p_neo4j_user, settings.p_neo4j_password))
         #create_index_for_vector(driver)
         # Define the Cypher query for inserting documents and chunks
         import_query = """
@@ -187,7 +195,9 @@ def insert_data(data):
             )
         )
         """
-
+        chain = GraphCypherQAChain.from_llm(
+           ChatOpenAI(temperature=0), graph=graph, verbose=True
+)
         transformed_data = []
         for file_chunks in data:  
             if not file_chunks:
@@ -240,4 +250,89 @@ def generate_graph ():
     except Exception as e:
         return {"kg_vector generate_graph error": str(e)}
     
+def perform_search(query: str, k: int = 1):
+    try:
+        # Initialize the vector store
+        embeddings = OpenAIEmbeddings(api_key=settings.openai_api_key)
+        client = OpenAI(api_key= settings.openai_api_key)
+#         general_system_template = """
+        # You are an AI assistant helping to answer questions based on provided information. 
+        # The information you will use is authoritative, and you should only rely on it to construct your response. 
+        # You should never attempt to correct or verify the information using external sources or internal knowledge. 
+        # If the provided information is incomplete or insufficient to answer the question, respond with "I don't know" rather than making assumptions.
+
+        # Your goal is to construct a human-readable answer that is well-structured, clear, and relevant to the question.
+        # Please ensure that the answer uses all relevant parts of the provided information, formatted as necessary.
+        # Do not mention that your answer is based on the provided information.
+        # If you are provided with related entities (e.g., tools, challenges, objectives) connected to the information, include them in the answer appropriately.
+# """
+#         general_user_template = "Question:```{query}```"
+#         #A list of templates, where the system message provides the model's instructions
+#         #instructions and the human message provides the user's input
+#         messages = [
+#             SystemMessagePromptTemplate.from_template(general_system_template),
+#             HumanMessagePromptTemplate.from_template(general_user_template),
+#         ]
+#         qa_prompt = ChatPromptTemplate.from_messages(messages)
+        
+        
+        
+
+        neo4j_db = Neo4jVector.from_existing_index(
+            embedding=embeddings,
+            url=settings.p_neo4j_uri,
+            username=settings.p_neo4j_user,
+            password=settings.p_neo4j_password,
+            database="neo4j",
+            index_name="Transcript",  # The same index name used when creating the vector store
+            text_node_property="page_content",
+            retrieval_query = """
+            WITH node AS chunk, score AS similarity
+                OPTIONAL MATCH (chunk)-[:MENTIONS]->(tool:Tool)
+                OPTIONAL MATCH (chunk)-[:MENTIONS]->(challenge:Challenge)
+                OPTIONAL MATCH (chunk)-[:MENTIONS]->(objective:Objective)
+    
+            WITH chunk, similarity, 
+                collect(DISTINCT COALESCE(tool.id, "")) AS tools,  // Handle nulls
+                collect(DISTINCT COALESCE(challenge.id, "")) AS challenges,  // Handle nulls
+                collect(DISTINCT COALESCE(objective.id, "")) AS objectives  // Handle nulls
+    
+            RETURN '## Chunk Text: ' + chunk.page_content + '\n\n'
+                + '### Tools: ' + reduce(str='', t IN tools | str + t + ', ') + '\n'
+                + '### Challenges: ' + reduce(str='', ch IN challenges | str + ch + ', ') + '\n'
+                + '### Objectives: ' + reduce(str='', o IN objectives | str + o + ', ') 
+                AS text, 
+                similarity AS score, 
+                {source: chunk.id} AS metadata
+            ORDER BY similarity ASC  // Best matches appear last
+            """
+        )
+
+        results = neo4j_db.similarity_search(query, k=k)
+
+        prompt = """
+        You are an AI assistant helping to answer questions based on provided information. 
+        The information you will use is authoritative, and you should only rely on it to construct your response. 
+        You should never attempt to correct or verify the information using external sources or internal knowledge. 
+        If the provided information is incomplete or insufficient to answer the question, respond with "I don't know" rather than making assumptions.
+
+        Your goal is to construct a human-readable answer that is well-structured, clear, and relevant to the question.
+        Please ensure that the answer uses all relevant parts of the provided information, formatted as necessary.
+        Do not mention that your answer is based on the provided information.
+        If you are provided with related entities (e.g., tools, challenges, objectives) connected to the information, include them in the answer appropriately.        
+        Question: $query
+
+        Context:
+        $results
+"""
+        new_prompt = Template(prompt).substitute(query = query, results = results)
+        response = client.chat.completions.create(messages=[{"role": "user","content": new_prompt,  }],model="gpt-4o-mini",)
+        
+        answer = response.choices[0].message.content.strip()
+
+        return answer
+        
+    except Exception as e:
+        print(f"Error performing search: {e}")
+
      
