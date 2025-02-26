@@ -1,10 +1,13 @@
-from fastapi import APIRouter, HTTPException, File, UploadFile, Request, Response
+from fastapi import APIRouter, HTTPException, Request
 from ..service import kg_vector_service
-import json
-
+import logging
+import traceback
 
 router = APIRouter()
 
+# Configure logging
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
     
 @router.post("/generate-graph")
 def test(req: Request):
@@ -27,7 +30,6 @@ async def search(req: Request):
         return{
             "data":data
         }
-    
     except Exception as e:
         print(f"Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))

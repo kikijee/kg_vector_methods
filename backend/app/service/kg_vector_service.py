@@ -27,6 +27,12 @@ from langchain.prompts import (
 from langchain.chains.qa_with_sources import load_qa_with_sources_chain
 from langchain.chains import RetrievalQAWithSourcesChain
 
+from ..utils import data_retrieval_util
+import logging
+import traceback
+
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
 
 class Entity(BaseModel):
     label: str 
@@ -38,21 +44,22 @@ class EntityResponse(BaseModel):
 
 def define_chunks():
     try:
-        # Get all text files in the directory
-        raw_files = glob.glob(r"./app/data/*.txt")
-        
-        # Chunking strategy: Each chunk will have at most 1000 characters
-        # 20 characters will overlap between chunks to add context
-        text_splitter = TokenTextSplitter(chunk_size=1000, chunk_overlap=20)
+        # # Get all text files in the directory
+        # raw_files = glob.glob(r"./app/data/*.txt")
 
         # List to store chunked files separately
         chunked_files_list = []
 
-        for file in raw_files:
-            file_name = os.path.basename(file)  # Extract file name only, no directory
+        # Chunking strategy: Each chunk will have at most 1000 characters
+        # 20 characters will overlap between chunks to add context
+        text_splitter = TokenTextSplitter(chunk_size=1000, chunk_overlap=20)
 
-            with open(file, "r") as f:
-                document = Document(page_content=f.read(), metadata={"file_name": file_name})
+        files = data_retrieval_util.fetch_files()
+
+        for file in files:
+
+            file_name = file["metadata"]["file_name"]
+            document = Document(page_content=file["page_content"], metadata={"file_name": file_name})
             
             # Chunk the document into smaller pieces
             chunked_documents = text_splitter.split_documents([document])
@@ -73,7 +80,8 @@ def define_chunks():
         return chunked_files_list
 
     except Exception as e:
-        return {"define_chunks error": str(e)}
+        logger.error(f"Error in define_chunks(): {traceback.format_exc()}")
+        raise RuntimeError("Error processing text chunks") from e
 
 
     
@@ -90,7 +98,9 @@ def embed_data(data):
                 # Use the embedding model to create a vector (embedding) for the text
                 chunk["vector"] = embeddings.embed_query(page_content)
     except Exception as e:
-        return {"kg_vector embed_data error": str(e)}
+        logger.error(f"Error in embed_data(): {traceback.format_exc()}")
+        raise RuntimeError("Error embedding data") from e
+
     
 def create_index_for_vector(driver):
     try:
@@ -101,7 +111,8 @@ def create_index_for_vector(driver):
             """)
         print("Index for 'vector' created successfully.")
     except Exception as e:
-        print(f"Error creating index: {str(e)}")
+        logger.error(f"Error in create_index_for_vector(): {traceback.format_exc()}")
+        raise RuntimeError("Error creating index for vector value") from e
     
 def extract_entities_from_text(text: str):
     client = OpenAI(api_key= settings.openai_api_key)
@@ -114,7 +125,7 @@ def extract_entities_from_text(text: str):
     label:'Objective',id:string; //Objective that is mentioned in the text; `id` property is one word that summarizes the objective as a whole. If there is a space please use an underscore instead. This one word must only be in lowercase;
     label:'Challenge',id:string,text:string; //Challenges that are talked about; `id` property is one word that summarizes the challange as a whole. If there is a space please use an underscore instead. This one word must only be in lowercase;
     label: 'Tool', id:string; //Please gather ALL the tools that are talked about; `id` property is the specific tool name. If there is a space please use an underscore instead. This id should be in lowercase; 
-    Note: There can possibly be multiple challenges and objectives mentioned in one chunk of text limit 2 per `Challenge` and `Objective`
+    Note: There can possibly be multiple challenges and objectives mentioned in one chunk of text limit 2 `Challenge`s and 2 `Objective`s per chunk
 
 
     3. The output should look like :
@@ -157,8 +168,8 @@ def extract_entities_from_text(text: str):
         print(res)
         return res
     except Exception as e:
-        print("Error in extract_entities_from_text:", str(e))
-        return {"entities":[]}
+        logger.error(f"Error in extract_entities_from_text(): {traceback.format_exc()}")
+        raise RuntimeError("Error extracting entities from text") from e
 
 
 def insert_data(data):
@@ -231,7 +242,8 @@ def insert_data(data):
         return transformed_data
 
     except Exception as e:
-        return {"kg_vector insert_data error": str(e)}
+        logger.error(f"Error in insert_data(): {traceback.format_exc()}")
+        raise RuntimeError("Error inserting data into neo4j") from e
 
     
 
@@ -244,8 +256,13 @@ def generate_graph ():
             "message": "success",
             "data": transformed
         }
+    except RuntimeError as e:
+        logger.error(f"Runtime error in generate_graph(): {traceback.format_exc()}")
+        raise
+
     except Exception as e:
-        return {"kg_vector generate_graph error": str(e)}
+        logger.critical(f"Unexpected error in generate_graph(): {traceback.format_exc()}")
+        raise RuntimeError("Unexpected error while generating graph") from e
     
 def perform_search(query: str, k: int = 1):
     try:
