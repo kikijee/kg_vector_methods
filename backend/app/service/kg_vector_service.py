@@ -324,7 +324,12 @@ def perform_search(query: str, k: int = 1):
 
         return answer
         
+    except RuntimeError as e:
+        logger.error(f"Runtime error in perform_search(): {traceback.format_exc()}")
+        raise
+
     except Exception as e:
-        print(f"Error performing search: {e}")
+        logger.critical(f"Unexpected error in perform_search(): {traceback.format_exc()}")
+        raise RuntimeError("Unexpected error while performing search") from e
 
      

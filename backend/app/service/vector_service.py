@@ -10,6 +10,11 @@ from langchain.schema import Document
 import glob
 from langchain.text_splitter import CharacterTextSplitter
 from ..utils import data_retrieval_util
+import logging
+import traceback
+
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
 
 def define_chunks():
     try:
@@ -42,7 +47,8 @@ def define_chunks():
         return files
 
     except Exception as e:
-        return {"define_chunks error": str(e)}
+        logger.error(f"Error in define_chunks(): {traceback.format_exc()}")
+        raise RuntimeError("Error defining chunks") from e
 
 
 
@@ -78,8 +84,13 @@ def define_graph():
             "message": "Success"
         }
 
+    except RuntimeError as e:
+        logger.error(f"Runtime error in define_graph(): {traceback.format_exc()}")
+        raise
+
     except Exception as e:
-        return {"define_graph error": str(e)}
+        logger.critical(f"Unexpected error in define_graph(): {traceback.format_exc()}")
+        raise RuntimeError("Unexpected error while defining graph") from e
 
 def perform_search(query: str, k: int = 1):
     try:
@@ -103,8 +114,13 @@ def perform_search(query: str, k: int = 1):
         print("results is ", results)
         return answer_question(results, query)
         
+    except RuntimeError as e:
+        logger.error(f"Runtime error in perform_search(): {traceback.format_exc()}")
+        raise
+
     except Exception as e:
-        print(f"Error performing search: {e}")
+        logger.critical(f"Unexpected error in perform_search(): {traceback.format_exc()}")
+        raise RuntimeError("Unexpected error while performing search") from e
 
 
 def answer_question(results, query):
@@ -122,7 +138,8 @@ def answer_question(results, query):
         answer = chat_completion.choices[0].message.content.strip()
         return answer
     except Exception as e:
-        print(f"Error answering question: {e}")
+        logger.error(f"Error in answer_question(): {traceback.format_exc()}")
+        raise RuntimeError("Error answering question") from e
 
     
 
