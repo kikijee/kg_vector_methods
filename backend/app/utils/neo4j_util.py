@@ -1,18 +1,12 @@
-# import { neo4j_driver } from "../models";
-
-# export async def runQuery(query: string, params = {}) {
-#     const session = neo4j_driver.session();
-#     try {
-#         const result = await session.run(query, params);
-#         return result.records;
-#     } finally {
-#         await session.close();
-#     }
-# }
-
 from ..config import settings
 from neo4j import GraphDatabase
 from typing import Dict, Any, List
+
+import logging
+import traceback
+
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
 
 
 NEO4J_URI = settings.neo4j_uri
@@ -59,8 +53,8 @@ def save_to_neo4j(results: List[Dict[str, Any]]):
     graph = Neo4jGraph()
     try:
         graph.insert_data(results)
-        print("Data successfully inserted into Neo4j.")
     except Exception as e:
-        print(f"Error inserting into Neo4j: {e}")
+        logger.error(f"Error in save_to_neo4j(): {traceback.format_exc()}")
+        raise RuntimeError("Error inserting data into neo4j") from e
     finally:
         graph.close()
