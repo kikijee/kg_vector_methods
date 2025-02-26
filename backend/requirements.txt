@@ -17,3 +17,4 @@ requests
 langchain-neo4j
 langchain-openai
 langchain-community
+PyDrive2

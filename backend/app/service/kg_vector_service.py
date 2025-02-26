@@ -239,3 +239,5 @@ def generate_graph ():
         }
     except Exception as e:
         return {"kg_vector generate_graph error": str(e)}
+    
+     
