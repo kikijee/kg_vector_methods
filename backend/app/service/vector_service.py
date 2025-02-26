@@ -61,9 +61,9 @@ def define_graph():
         neo4j_db = Neo4jVector.from_documents(
             documents = documents,
             embedding = embeddings,
-            url = settings.neo4j_uri,
-            username = settings.neo4j_user,
-            password = settings.neo4j_password,
+            url = settings.p_neo4j_uri,
+            username = settings.p_neo4j_user,
+            password = settings.p_neo4j_password,
             database = "neo4j",
             index_name = "Transcript", #Node label is Transcript
             text_node_property = "info", #info property is used to store text
