@@ -70,9 +70,9 @@ def define_graph():
         neo4j_db = Neo4jVector.from_documents(
             documents = documents,
             embedding = embeddings,
-            url = settings.p_neo4j_uri,
-            username = settings.p_neo4j_user,
-            password = settings.p_neo4j_password,
+            url = settings.neo4j_uri_2,
+            username = settings.neo4j_user_2,
+            password = settings.neo4j_password_2,
             database = "neo4j",
             index_name = "Transcript", #Node label is Transcript
             text_node_property = "info", #info property is used to store text
@@ -100,9 +100,9 @@ def perform_search(query: str, k: int = 1):
     )
         neo4j_db = Neo4jVector.from_existing_index(
             embedding=embeddings,
-            url=settings.neo4j_uri,
-            username=settings.neo4j_user,
-            password=settings.neo4j_password,
+            url=settings.neo4j_uri_2,
+            username=settings.neo4j_user_2,
+            password=settings.neo4j_password_2,
             database="neo4j",
             index_name="Transcript",  # The same index name used when creating the vector store
             text_node_property="info",

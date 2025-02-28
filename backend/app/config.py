@@ -15,6 +15,14 @@ class Settings:
     neo4j_user: str = os.getenv("NEO4J_USERNAME")
     neo4j_password: str = os.getenv("NEO4J_PASSWORD")
 
+    neo4j_uri_1: str = os.getenv("NEO4J_URI_1")
+    neo4j_user_1: str = os.getenv("NEO4J_USERNAME_1")
+    neo4j_password_1: str = os.getenv("NEO4J_PASSWORD_1")
+
+    neo4j_uri_2: str = os.getenv("NEO4J_URI_2")
+    neo4j_user_2: str = os.getenv("NEO4J_USERNAME_2")
+    neo4j_password_2: str = os.getenv("NEO4J_PASSWORD_2")
+
     p_neo4j_uri: str = os.getenv("P_NEO4J_URI")
     p_neo4j_user: str = os.getenv("P_NEO4J_USERNAME")
     p_neo4j_password: str = os.getenv("P_NEO4J_PASSWORD")

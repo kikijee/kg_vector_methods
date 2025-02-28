@@ -21,7 +21,7 @@ export default function Home() {
           alignItems:'center',
           width:500,
           height:500,
-          bgcolor:'#7a7a7a',
+          bgcolor:'#383838',
           borderRadius:5,
           gap:5
         }}
@@ -36,6 +36,7 @@ export default function Home() {
 
         <Button 
           variant="contained"
+          sx={{color:'#fff',bgcolor:'#1c1c1c'}}
         >
           Upload
         </Button>
@@ -50,7 +51,7 @@ export default function Home() {
           alignItems:'center',
           width:500,
           height:500,
-          bgcolor:'#7a7a7a',
+          bgcolor:'#383838',
           borderRadius:5,
           gap:5
         }}
@@ -66,6 +67,7 @@ export default function Home() {
         <Button 
           variant="contained"
           href="/chat"
+          sx={{color:'#fff',bgcolor:'#1c1c1c'}}
         >
           Chat
         </Button>

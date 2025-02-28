@@ -29,8 +29,7 @@ async def answer(req: Request):
         user_input = body.get("user_input")  # Access user_input from the parsed JSON
         answer, cypher_query = kg_service.answer_question(user_input)
         return {
-            "answer":answer,
-            "cypher_query":cypher_query
+            "data":answer,
         }
     except Exception as e:
         error_details = traceback.format_exc()

@@ -1,9 +1,16 @@
 'use client'
 import axios from "axios";
+import * as React from 'react';
 import { useEffect, useRef, useState } from "react";
 import { Box, Typography, TextField, Button, CssBaseline } from "@mui/material";
 import ReactMarkdown from 'react-markdown';
 import CircularProgress from '@mui/material/CircularProgress';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
 
 const ChatComponent = () => {
   const [messages, setMessages] = useState([
@@ -11,12 +18,19 @@ const ChatComponent = () => {
   ]);
   const [currMessage, setCurrMessage] = useState("");
   const [isFetching, setIsFetching] = useState(false);
+  const [ragType, setRagType] = useState('');
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
   // Auto-scroll to latest message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRagType((event.target as HTMLInputElement).value);
+    console.log((event.target as HTMLInputElement).value)
+  };
+
 
   // Handle sending a message
   const handleSend = async () => {
@@ -31,7 +45,7 @@ const ChatComponent = () => {
     try {
       // Send request to backend
       setIsFetching(true)
-      const response = await axios.post("http://localhost:8000/api/kg-vector/answer-question", {
+      const response = await axios.post(`http://localhost:8000/api/${ragType}/answer-question`, {
         user_input: currMessage
       });
       setIsFetching(false)
@@ -98,7 +112,7 @@ const ChatComponent = () => {
             )}
           </Box>
         ))}
-        { isFetching &&
+        {isFetching &&
           <Box
             sx={{
               display: "inline-block",
@@ -128,9 +142,32 @@ const ChatComponent = () => {
           value={currMessage}
           onChange={(e) => setCurrMessage(e.target.value)}
         />
-        <Button onClick={handleSend} variant="contained" sx={{ ml: 1, bgcolor:'#9D89FF', color:'#fff' }}>
+        <Button onClick={handleSend} variant="contained" sx={{ ml: 1, bgcolor: '#7e64fc', color: '#fff' }}>
           Send
         </Button>
+      </Box>
+      <Box sx={{display:'flex',gap:10}}>
+        <Button 
+          variant="outlined" 
+          sx={{ color: '#fff', borderColor: '#fff' }}
+          onClick={()=>{setMessages([])}}
+          >
+          Clear Chat
+        </Button>
+
+        <FormControl>
+          <RadioGroup
+            row
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="vector"
+            name="radio-buttons-group"
+            onChange={handleRadioChange}
+          >
+            <FormControlLabel value="vector" control={<Radio sx={{color:'#fff'}}/>} label="Vector" />
+            <FormControlLabel value="kg" control={<Radio />} label="KG" />
+            <FormControlLabel value="kg-vector" control={<Radio />} label="Vector + KG" />
+          </RadioGroup>
+        </FormControl>
       </Box>
     </Box>
   );

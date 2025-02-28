@@ -107,7 +107,15 @@ def create_index_for_vector(driver):
         # Create an index for the vector property on Chunk nodes
         with driver.session() as session:
             session.run("""
-                CREATE INDEX IF NOT EXISTS FOR (c:Chunk) ON (c.vector)
+                CREATE VECTOR INDEX Transcript IF NOT EXISTS
+                FOR (n:Chunk) ON (n.vector) 
+                OPTIONS {
+                    indexProvider: 'vector-2.0',
+                    indexConfig: {
+                        `vector.dimensions`: 1536,
+                        `vector.similarity_function`: 'cosine'
+                    }
+                };
             """)
         print("Index for 'vector' created successfully.")
     except Exception as e:
@@ -175,8 +183,8 @@ def extract_entities_from_text(text: str):
 def insert_data(data):
     try:
         # Connect to Neo4j
-        driver = GraphDatabase.driver(settings.p_neo4j_uri, auth=(settings.p_neo4j_user, settings.p_neo4j_password))
-        #create_index_for_vector(driver)
+        driver = GraphDatabase.driver(settings.neo4j_uri, auth=(settings.neo4j_user, settings.neo4j_password))
+        create_index_for_vector(driver)
         # Define the Cypher query for inserting documents and chunks
         import_query = """
         UNWIND $data AS file_data
@@ -272,9 +280,9 @@ def perform_search(query: str, k: int = 1):
 
         neo4j_db = Neo4jVector.from_existing_index(
             embedding=embeddings,
-            url=settings.p_neo4j_uri,
-            username=settings.p_neo4j_user,
-            password=settings.p_neo4j_password,
+            url=settings.neo4j_uri,
+            username=settings.neo4j_user,
+            password=settings.neo4j_password,
             database="neo4j",
             index_name="Transcript",  # The same index name used when creating the vector store
             text_node_property="page_content",
