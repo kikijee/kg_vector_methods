@@ -9,9 +9,9 @@ logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 
-NEO4J_URI = settings.neo4j_uri
-NEO4J_USER = settings.neo4j_user
-NEO4J_PASSWORD = settings.neo4j_password
+NEO4J_URI = settings.neo4j_uri_1
+NEO4J_USER = settings.neo4j_user_1
+NEO4J_PASSWORD = settings.neo4j_password_1
 
 
 class Neo4jGraph:

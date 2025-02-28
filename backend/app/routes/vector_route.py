@@ -26,7 +26,10 @@ async def answer(req: Request):
     try:
         body = await req.json()
         user_input = body.get("user_input")  # Access user_input from the parsed JSON
-        return vector_service.perform_search(user_input, 5)
+        data = vector_service.perform_search(user_input, 5)
+        return{
+            "data":data
+        }
     except Exception as e:
         error_details = traceback.format_exc()
         logger.error(f"Error in api/vector/answer-question: {error_details}")

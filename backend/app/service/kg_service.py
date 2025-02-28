@@ -105,7 +105,7 @@ def generate_graph ():
 
 def query_graph(user_input):
     try:
-        graph = Neo4jGraph(url = settings.neo4j_uri, username = settings.neo4j_user, password = settings.neo4j_password)
+        graph = Neo4jGraph(url = settings.neo4j_uri_1, username = settings.neo4j_user_1, password = settings.neo4j_password_1)
         llm = ChatOpenAI(
             model="gpt-4o-mini",
             temperature=0.5,
