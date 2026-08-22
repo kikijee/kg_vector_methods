@@ -1,5 +1,5 @@
 # Overview  
-
+https://lnkd.in/p/gnZUh6ri
 Our solution was an end-to-end pipeline that transformed unstructured data into a structured, visualizable, and searchable **knowledge graph**. By employing **Retrieval-Augmented Generation (RAG)** techniques—including **vector similarity, knowledge graph, and hybrid (vector + knowledge graph) searches**—our project aimed to enhance **searchability, discoverability, and AI-driven analytics** of qualitative insights.  
 
 ## How To Run
